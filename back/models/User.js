@@ -1,20 +1,21 @@
-const Sequelize = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
+const sequelize = new Sequelize("sqlite::memory:");
 
-const Note = sequelize.define("notes", {
-  note: Sequelize.TEXT,
-  tag: Sequelize.STRING,
+const User = sequelize.define("user", {
+  email: {
+    type: DataTypes.STRING,
+    validate: {
+      isEmail: true,
+    },
+    allowNull: false,
+    unique: true,
+  },
+  password: {
+    type: DataTypes.STRING(10),
+    validate: {
+      is: /^[0-9a-f]{10}$/i,
+    },
+  },
 });
 
-sequelize.sync({ force: true }).then(() => {
-  console.log(`Database & tables created!`);
-
-  // Note.bulkCreate([
-  //   { note: 'pick up some bread after work', tag: 'shopping' },
-  //   { note: 'remember to write up meeting notes', tag: 'work' },
-  //   { note: 'learn how to use node orm', tag: 'work' }
-  // ]).then(function() {
-  //   return Note.findAll();
-  // }).then(function(notes) {
-  //   console.log(notes);
-  // });
-});
+module.exports = sequelize.model("user", User);

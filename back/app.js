@@ -2,9 +2,8 @@ const express = require("express");
 const bodyparser = require("body-parser");
 const path = require("path");
 const Sequelize = require("sequelize");
-// require("dotenv").config();
 
-// const userRoutes = require('./routes/user');
+const userRoutes = require("./routes/user");
 // const sauceRoutes = require('./routes/sauce');
 // const likeRoutes = require('./routes/like');
 
@@ -41,8 +40,8 @@ app.use((req, res, next) => {
 
 // app.use('/images', express.static(path.join(__dirname, 'images')));
 
-// app.use('/api/auth', userRoutes);
-// app.use('/api/sauces', sauceRoutes);
-// app.use('/api/sauces', likeRoutes)
+app.use("/api/auth", userRoutes);
+// app.use('/api/posts', postRoutes);
+// app.use('/api/posts', likeRoutes)
 
 module.exports = app;
