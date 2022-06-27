@@ -4,7 +4,7 @@ const path = require("path");
 const Sequelize = require("sequelize");
 
 const userRoutes = require("./routes/user");
-// const sauceRoutes = require('./routes/sauce');
+const postRoutes = require("./routes/post");
 // const likeRoutes = require('./routes/like');
 
 const sequelize = new Sequelize({
@@ -38,10 +38,10 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use("/api/auth", userRoutes);
-// app.use('/api/posts', postRoutes);
+app.use("/api/posts", postRoutes);
 // app.use('/api/posts', likeRoutes)
 
 module.exports = app;
