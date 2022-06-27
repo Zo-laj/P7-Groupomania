@@ -1,1 +1,7 @@
-<p>post-list works!</p>
+<h2>titre : {{ post.title }}</h2>
+<p>Mis en ligne le {{ post.createdDate | date: "d MMMM YYYY à HH:MM" }}</p>
+<img *ngIf="post.imageUrl" [src]="post.imageUrl" [alt]="post.title" />
+<p>Contenu de l'article : {{ post.description }}</p>
+<p>Auteur : {{ post.author }}</p>
+<p>Like: {{ post.like }}</p>
+<button (click)="onLike()">{{ btnTxt }}</button>
