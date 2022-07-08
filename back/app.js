@@ -1,24 +1,21 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 const path = require("path");
-const Sequelize = require("sequelize");
 
 const userRoutes = require("./routes/user");
 const postRoutes = require("./routes/post");
 // const likeRoutes = require('./routes/like');
 
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: "./database.sqlite",
-});
+const { Sequelize } = require("sequelize");
 
+const sequelize = new Sequelize("sqlite::memory:");
 sequelize
   .authenticate()
   .then(() => {
     console.log("Connection has been established successfully.");
   })
-  .catch((err) => {
-    console.error("Unable to connect to the database:", err);
+  .catch((error) => {
+    console.error("Unable to connect to the database:", error);
   });
 
 const app = express();
@@ -38,7 +35,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/images", express.static(path.join(__dirname, "images")));
+// app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use("/api/auth", userRoutes);
 app.use("/api/posts", postRoutes);
