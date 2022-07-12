@@ -31,10 +31,18 @@ export class PostsService {
             createdDate: new Date(),
         })),
         switchMap(newPost => this.http.post<Post[]>(
-            'http://localhost:3000/posts',
+            'http://localhost:3000/api/posts',
             newPost)
         )
     );
+  }
+
+  public getPostById(postId: number): Observable<Post[]> {
+    return this.http.get<Post[]>(`http://localhost:3000/api/posts/${postId}`)
+  }
+
+  public deletePost(postId: number): Observable<Post[]> {
+    return this.http.delete<Post[]>(`http://localhost:3000/api/posts/${postId}`)
   }
 }
 

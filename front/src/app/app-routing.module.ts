@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'auth/signup', component: SignupComponent},
   { path: 'auth/login', component: LoginComponent},
   { path: 'posts', component: PostListComponent},
-  { path: 'post/:id', component: SinglePostComponent},
+  { path: 'posts/:id', component: SinglePostComponent},
   { path: 'new-post', component: PostFormComponent},
   { path: 'modify-post/:id', component: PostFormComponent},
   { path: '', pathMatch: 'full', redirectTo: 'posts'},

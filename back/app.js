@@ -6,11 +6,10 @@ const userRoutes = require("./routes/user");
 const postRoutes = require("./routes/post");
 // const likeRoutes = require('./routes/like');
 
-const { Sequelize } = require("sequelize");
+const sequelize = require("./database");
 
-const sequelize = new Sequelize("sqlite::memory:");
 sequelize
-  .authenticate()
+  .sync()
   .then(() => {
     console.log("Connection has been established successfully.");
   })
@@ -21,6 +20,7 @@ sequelize
 const app = express();
 
 app.use(bodyparser.json());
+app.use(express.json());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -35,6 +35,7 @@ app.use((req, res, next) => {
   next();
 });
 
+const Post = require("./models/Post");
 // app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use("/api/auth", userRoutes);

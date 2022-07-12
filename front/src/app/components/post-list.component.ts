@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Post } from '../models/post.model';
@@ -15,8 +15,6 @@ export class PostListComponent {
   public constructor(private readonly postService: PostsService) { 
     this.posts$ = this.postService.getAllPosts();
   }
-
-  // public btnTxt: string;
 
 
   // onLike() {

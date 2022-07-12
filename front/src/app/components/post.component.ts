@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Post } from '../models/post.model';
 import { PostsService } from '../services/posts.service';
 
@@ -12,6 +13,11 @@ export class PostComponent {
   @Input() 
   public post: Post;
   
-  public constructor(private readonly postService: PostsService ) { }
+  public constructor( private router: Router ) { 
+  }
+
+  onViewPost() {
+    this.router.navigateByUrl(`posts/${this.post.id}`);
+  }
 
 }

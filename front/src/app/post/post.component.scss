@@ -1,0 +1,12 @@
+.post-container {
+  display: flex;
+  justify-content: center;
+  margin: 16px 64px;
+}
+
+.post-content {
+  box-shadow: 3px 3px 10px -3px #bfbfbf;
+  padding: 32px;
+  border-radius: 8px;
+  width: 500px;
+}

@@ -1,5 +1,5 @@
 export class Post {
-  public userId: number;
+  public id: string;
   public title: string;
   public author: string;
   public description: string;
