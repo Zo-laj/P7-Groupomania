@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { first, Observable, tap } from 'rxjs';
 import { Post } from '../models/post.model';
 import { PostsService } from '../services/posts.service';
 
@@ -25,10 +25,15 @@ export class SinglePostComponent implements OnInit {
     this.post$ = this.postService.getPostById(postId);
   }
 
+  public onModify() {
+    
+  }
+
   public onDelete() {
     const postId = +this.route.snapshot.params['id'];
-    this.post$ = this.postService.deletePost(postId)
-    // this.router.navigateByUrl('/posts');
+    this.postService.deletePost(postId).pipe(
+      first()
+    ).subscribe(() => this.router.navigateByUrl('/posts'));
   }
 
 }

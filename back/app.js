@@ -9,7 +9,7 @@ const postRoutes = require("./routes/post");
 const sequelize = require("./database");
 
 sequelize
-  .sync()
+  .sync({ force: true })
   .then(() => {
     console.log("Connection has been established successfully.");
   })
@@ -35,7 +35,6 @@ app.use((req, res, next) => {
   next();
 });
 
-const Post = require("./models/Post");
 // app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use("/api/auth", userRoutes);

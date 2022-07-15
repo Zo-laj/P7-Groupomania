@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
+import { SignupComponent } from './components/signup.component';
 import { LandingPageComponent } from './components/landing-page.component';
 import { PostFormComponent } from './components/post-form.component';
 import { PostListComponent } from './components/post-list.component';
 import { SinglePostComponent } from './components/single-post.component';
+import { LoginComponent } from './components/login.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent},

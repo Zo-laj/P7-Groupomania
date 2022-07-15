@@ -6,10 +6,10 @@ require("dotenv").config();
 exports.signup = async (email, password) => {
   const hash = await bcrypt.hash(password, 10);
 
-  return new User({
+  return User.create({
     email,
     password: hash,
-  }).save();
+  });
 };
 
 exports.login = async (email, password) => {

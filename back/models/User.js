@@ -1,21 +1,26 @@
-const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = new Sequelize("sqlite::memory:");
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../database");
 
-const User = sequelize.define("user", {
-  email: {
-    type: DataTypes.STRING,
-    validate: {
-      isEmail: true,
-    },
-    allowNull: false,
-    unique: true,
-  },
-  password: {
-    type: DataTypes.STRING(10),
-    validate: {
-      is: /^[0-9a-f]{10}$/i,
-    },
-  },
-});
+class User extends Model {}
 
-module.exports = sequelize.model("user", User);
+User.init(
+  {
+    email: {
+      type: DataTypes.STRING,
+      // validate: {
+      //   isEmail: true,
+      // },
+      // allowNull: false,
+      // unique: true,
+    },
+    password: {
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    sequelize,
+    modelName: "User",
+  }
+);
+
+module.exports = User;
