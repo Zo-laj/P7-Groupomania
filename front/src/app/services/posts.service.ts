@@ -37,12 +37,12 @@ export class PostsService {
     );
   }
 
-  public getPostById(postId: number): Observable<Post[]> {
-    return this.http.get<Post[]>(`http://localhost:3000/api/posts/${postId}`)
+  public getPostById(postId: number): Observable<Post> {
+    return this.http.get<Post>(`http://localhost:3000/api/posts/${postId}`)
   }
 
-  public deletePost(postId: number): Observable<Post[]> {
-    return this.http.delete<Post[]>(`http://localhost:3000/api/posts/${postId}`)
+  public deletePost(postId: number): Observable<Post> {
+    return this.http.delete<Post>(`http://localhost:3000/api/posts/${postId}`)
   }
 }
 

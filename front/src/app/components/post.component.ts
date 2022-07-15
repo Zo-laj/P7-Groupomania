@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, switchMap, take } from 'rxjs';
 import { Post } from '../models/post.model';
 import { PostsService } from '../services/posts.service';
 
@@ -12,12 +13,19 @@ export class PostComponent {
 
   @Input() 
   public post: Post;
-  
-  public constructor( private router: Router ) { 
-  }
 
-  onViewPost() {
+  public readonly post$: Observable<Post>;
+  
+  public constructor( private readonly postService: PostsService,
+     private router: Router ) {}
+
+  public onViewPost() {
     this.router.navigateByUrl(`posts/${this.post.id}`);
   }
 
+  public onDelete() {
+    this.post$.pipe(
+      take(1),
+      switchMap(post => this.postService.deletePost(+post.id)))
+  }
 }

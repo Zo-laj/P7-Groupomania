@@ -12,7 +12,7 @@ import { PostsService } from '../services/posts.service';
 
 export class SinglePostComponent implements OnInit {
 
-  public post$!: Observable<Post[]>;
+  public post$: Observable<Post>;
   public likeBtn: string;
 
   public constructor(private readonly postService: PostsService,

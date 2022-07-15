@@ -27,7 +27,7 @@ exports.getAllPosts = (req, res) => {
 exports.getOnePost = (req, res) => {
   try {
     service
-      .getOneSauce(req.params.id)
+      .getOnePost(req.params.id)
       .then((post) => res.status(200).json(post))
       .catch((error) => res.status(404).json({ error }));
   } catch {
