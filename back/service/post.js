@@ -31,7 +31,7 @@ exports.getOnePost = (id) => {
 // };
 
 exports.deletePost = async (id) => {
-  // const deletedPost = await Post.findOne({ id });
+  // const deletedPost = await Post.findOne({ id: id });
 
   // const filename = await deletedPost.imageUrl.split("/images/")[1];
 
@@ -39,5 +39,7 @@ exports.deletePost = async (id) => {
   //   Post.deleteOne({ _id: id });
   // });
 
-  return Post.deleteOne({ id });
+  return await Post.destroy({
+    where: { id },
+  });
 };

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, tap } from 'rxjs';
 import { Post } from '../models/post.model';
 import { PostsService } from '../services/posts.service';
 
@@ -16,12 +16,19 @@ export class SinglePostComponent implements OnInit {
   public likeBtn: string;
 
   public constructor(private readonly postService: PostsService,
-    private route: ActivatedRoute ) { }
+    private route: ActivatedRoute, 
+    private router: Router ) { }
   
-  ngOnInit() {
+  public ngOnInit() {
     this.likeBtn = "j'aime";
     const postId = +this.route.snapshot.params['id'];
     this.post$ = this.postService.getPostById(postId);
+  }
+
+  public onDelete() {
+    const postId = +this.route.snapshot.params['id'];
+    this.post$ = this.postService.deletePost(postId)
+    // this.router.navigateByUrl('/posts');
   }
 
 }

@@ -14,7 +14,7 @@ export class PostComponent {
   @Input() 
   public post: Post;
 
-  public readonly post$: Observable<Post>;
+  public post$: Observable<Post>;
   
   public constructor( private readonly postService: PostsService,
      private router: Router ) {}
@@ -23,9 +23,4 @@ export class PostComponent {
     this.router.navigateByUrl(`posts/${this.post.id}`);
   }
 
-  public onDelete() {
-    this.post$.pipe(
-      take(1),
-      switchMap(post => this.postService.deletePost(+post.id)))
-  }
 }
