@@ -7,8 +7,8 @@ import { PostsService } from '../services/posts.service';
 
 @Component({
   selector: 'app-post-form',
-  templateUrl: '../post-form/post-form.component.html',
-  styleUrls: ['../post-form/post-form.component.scss']
+  templateUrl: './post-form.component.html',
+  styleUrls: ['./post-form.component.scss']
 })
 export class PostFormComponent implements OnInit {
 

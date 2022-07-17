@@ -6,8 +6,8 @@ import { PostsService } from '../services/posts.service';
 
 @Component({
   selector: 'app-single-post',
-  templateUrl: '../single-post/single-post.component.html',
-  styleUrls: ['../single-post/single-post.component.scss']
+  templateUrl: './single-post.component.html',
+  styleUrls: ['./single-post.component.scss']
 })
 
 export class SinglePostComponent implements OnInit {

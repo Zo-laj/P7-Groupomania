@@ -9,7 +9,7 @@ const postRoutes = require("./routes/post");
 const sequelize = require("./database");
 
 sequelize
-  .sync({ force: true })
+  .sync()
   .then(() => {
     console.log("Connection has been established successfully.");
   })

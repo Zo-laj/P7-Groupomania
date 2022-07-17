@@ -6,8 +6,8 @@ import { PostsService } from '../services/posts.service';
 
 @Component({
   selector: 'app-post',
-  templateUrl: '../post/post.component.html',
-  styleUrls: ['../post/post.component.scss']
+  templateUrl: './post.component.html',
+  styleUrls: ['./post.component.scss']
 })
 export class PostComponent {
 

@@ -6,7 +6,7 @@ import { PostsService } from '../services/posts.service';
 
 @Component({
   selector: 'app-post-list',
-  templateUrl: '../post-list/post-list.component.html'
+  templateUrl: './post-list.component.html'
 })
 export class PostListComponent {
 

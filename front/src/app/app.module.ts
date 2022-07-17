@@ -3,14 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LandingPageComponent } from './components/landing-page.component';
-import { SignupComponent } from './components/signup.component';
-import { LoginComponent } from './components/login.component';
-import { PostComponent } from './components/post.component';
-import { PostListComponent } from './components/post-list.component';
-import { SinglePostComponent } from './components/single-post.component';
-import { PostFormComponent } from './components/post-form.component';
-import { HeaderComponent } from './components/header.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { LoginComponent } from './auth/login/login.component';
+import { PostComponent } from './post/post.component';
+import { PostListComponent } from './post-list/post-list.component';
+import { SinglePostComponent } from './single-post/single-post.component';
+import { PostFormComponent } from './post-form/post-form.component';
+import { HeaderComponent } from './header/header.component';
 import { AuthGardService } from './services/auth-gard.service';
 import { AuthService } from './services/auth.service';
 import { PostsService } from './services/posts.service';
@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { registerLocaleData } from '@angular/common';
 import * as fr from '@angular/common/locales/fr';
+import { httpInterceptorProviders } from './interceptors';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,9 @@ import * as fr from '@angular/common/locales/fr';
     SignupComponent,
     LoginComponent,
     PostComponent,
-    PostListComponent,
-    SinglePostComponent,
     PostFormComponent,
+    SinglePostComponent,
+    PostListComponent,
     HeaderComponent,
   ],
   imports: [
@@ -42,7 +43,8 @@ import * as fr from '@angular/common/locales/fr';
     AuthService,
     PostsService,
     AuthGardService,
-    { provide: LOCALE_ID, useValue: 'fr-FR'}
+    { provide: LOCALE_ID, useValue: 'fr-FR'},
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

@@ -1,14 +1,26 @@
 <h1>Connexion</h1>
 <section class="form-container">
-  <form>
+  <form [formGroup]="loginForm">
     <div class="form-element">
       <label for="email">Email</label>
-      <input type="email" class="form-control" id="email" />
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+      />
     </div>
     <div class="form-element">
       <label for="password">Mot de passe</label>
-      <input type="password" class="form-control" id="password" />
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        formControlName="password"
+      />
     </div>
-    <button class="form-btn" color="primary-color">Se connecter</button>
+    <button class="form-btn" color="primary-color" (click)="onLogin()">
+      Se connecter
+    </button>
   </form>
 </section>
