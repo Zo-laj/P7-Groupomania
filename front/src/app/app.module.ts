@@ -11,7 +11,7 @@ import { PostListComponent } from './post-list/post-list.component';
 import { SinglePostComponent } from './single-post/single-post.component';
 import { PostFormComponent } from './post-form/post-form.component';
 import { HeaderComponent } from './header/header.component';
-import { AuthGardService } from './services/auth-gard.service';
+import { AuthGard } from './services/auth-gard.service';
 import { AuthService } from './services/auth.service';
 import { PostsService } from './services/posts.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -42,7 +42,7 @@ import { httpInterceptorProviders } from './interceptors';
   providers: [
     AuthService,
     PostsService,
-    AuthGardService,
+    AuthGard,
     { provide: LOCALE_ID, useValue: 'fr-FR'},
     httpInterceptorProviders
   ],

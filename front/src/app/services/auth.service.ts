@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -9,17 +9,22 @@ import { User } from '../models/user.model';
 })
 export class AuthService {
 
+  public isAuth$ = new BehaviorSubject<boolean>(false); 
   private token = "";
   private userId = "";
 
   public constructor(private http: HttpClient) {}
 
-  public createUser(email: string, password: string): Observable<User> {
-    return this.http.post<User>('http://localhost:3000/api/auth/signup', {email, password});
-  }
-
   public getToken(): string {
     return this.token;
+  }
+
+  public getUserId() {
+    return this.userId;
+  }
+
+  public createUser(email: string, password: string): Observable<User> {
+    return this.http.post<User>('http://localhost:3000/api/auth/signup', {email, password});
   }
 
   public loginUser(email: string, password: string) {
@@ -27,6 +32,7 @@ export class AuthService {
       tap(({ userId, token }) => {
         this.userId = userId;
         this.token = token;
+        this.isAuth$.next(true)
       })
     ) 
   }
