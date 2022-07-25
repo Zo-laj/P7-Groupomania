@@ -13,10 +13,10 @@ const routes: Routes = [
   { path: '', component: LandingPageComponent},
   { path: 'auth/signup', component: SignupComponent},
   { path: 'auth/login', component: LoginComponent},
-  { path: 'posts', component: PostListComponent, canActivate: [AuthGard] },
+  { path: 'posts', component: PostListComponent},
   { path: 'posts/:id', component: SinglePostComponent, canActivate: [AuthGard]},
   { path: 'new-post', component: PostFormComponent, canActivate: [AuthGard]},
-  { path: 'modify-post/:id', component: PostFormComponent, canActivate: [AuthGard]},
+  { path: 'modify-post/:id', component: PostFormComponent, canActivate: [AuthGard] },
   { path: '', redirectTo: 'posts', pathMatch: 'full' },
   { path: '**', redirectTo: 'posts' }
 ];

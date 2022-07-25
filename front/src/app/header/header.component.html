@@ -2,10 +2,10 @@
   <div class="nav-bar">
     <ul>
       <li routerLinkActive="active">
-        <a routerLink="posts">Posts</a>
+        <a routerLink="posts" *ngIf="isLoggedIn$ | async">Posts</a>
       </li>
       <li routerLinkActive="active">
-        <a routerLink="new-post">Nouveau post</a>
+        <a routerLink="new-post" *ngIf="isLoggedIn$ | async">Nouveau post</a>
       </li>
     </ul>
     <div class="logo">
@@ -16,10 +16,23 @@
     </div>
     <ul>
       <li routerLinkActive="active">
-        <a routerLink="auth/signup">Inscription</a>
+        <a routerLink="auth/signup" *ngIf="!(isLoggedIn$ | async)">
+          Inscription
+        </a>
       </li>
       <li routerLinkActive="active">
-        <a routerLink="auth/login">Connexion</a>
+        <a routerLink="auth/login" *ngIf="!(isLoggedIn$ | async)">
+          Connexion
+        </a>
+      </li>
+      <li>
+        <a
+          routerLink="auth/login"
+          *ngIf="isLoggedIn$ | async"
+          (click)="onLogout()"
+        >
+          Déconnexion
+        </a>
       </li>
     </ul>
   </div>

@@ -35,6 +35,12 @@ export class AuthService {
         this.isAuth$.next(true)
       })
     ) 
+  };
+
+  public logoutUser() {
+    this.token = '';
+    this.userId = '';
+    this.isAuth$.next(false);
   }
 
 }

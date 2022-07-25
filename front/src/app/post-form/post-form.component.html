@@ -20,8 +20,14 @@
       </textarea>
     </div>
     <div class="form-group">
-      <label for="imageUrl">Ajouter une photo (url)</label>
-      <input id="imageUrl" type="text" formControlName="imageUrl" />
+      <input
+        class="file-input"
+        type="file"
+        accept="image/*"
+        (change)="onFileChange($event)"
+        #fileUpload
+      />
+      <button (click)="fileUpload.click()">Ajouter une image</button>
     </div>
     <div class="submit-btn">
       <button
@@ -42,7 +48,13 @@
       <em> de {{ post.author }} </em>
     </p>
     <p>Mis en ligne {{ post.createdDate | date: "à HH:mm, le d MMMM yyyy" }}</p>
-    <img *ngIf="post.imageUrl" [src]="post.imageUrl" [alt]="post.title" />
+    <div class="img-container">
+      <img
+        *ngIf="post.imageUrl && post.imageUrl !== ''"
+        [src]="post.imageUrl"
+        [alt]="post.title"
+      />
+    </div>
     <p>{{ post.description }}</p>
   </div>
 </div>

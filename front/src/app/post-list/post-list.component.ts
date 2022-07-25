@@ -13,17 +13,7 @@ export class PostListComponent {
   public readonly posts$: Observable<Post[]>;
 
   public constructor(private readonly postService: PostsService) { 
-    this.posts$ = this.postService.getAllPosts();
+    this.posts$ = this.postService.posts$;
   }
 
-
-  // onLike() {
-  //   if (this.btnTxt === "J'aime !") {
-  //   this.post.like++;
-  //   this.btnTxt = "Je n'aime plus !";
-  // } else {
-  //   this.post.like--;
-  //   this.btnTxt = "J'aime !"
-  // }
-  // }
 }

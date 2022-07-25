@@ -25,6 +25,30 @@ export class SinglePostComponent implements OnInit {
     this.post$ = this.postService.getPostById(postId);
   }
 
+  public onLike(postId: number) {
+    if (this.likeBtn === "j'aime") {
+      this.post$ = this.postService.likePost(postId, 'like').pipe(
+        tap(() => this.likeBtn = "Je n'aime plus")
+      );
+    } else {
+      this.post$ = this.postService.likePost(postId, 'unlike').pipe(
+        tap(() => this.likeBtn = "j'aime")
+      );
+    }
+  }
+
+//   onSnap(faceSnapId: number) {
+//     if (this.buttonText === 'Oh Snap!') {
+//         this.faceSnap$ = this.faceSnapsService.snapFaceSnapById(faceSnapId, 'snap').pipe(
+//             tap(() => this.buttonText = 'Oops, unSnap!')
+//         );
+//     } else {
+//         this.faceSnap$ = this.faceSnapsService.snapFaceSnapById(faceSnapId, 'unsnap').pipe(
+//             tap(() => this.buttonText = 'Oh Snap!')
+//         );
+//     }
+// }
+
   public onModify() {
     
   }

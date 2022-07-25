@@ -4,9 +4,28 @@
   margin: 16px 64px;
 }
 
-.post-content {
-  box-shadow: 3px 3px 10px -3px #bfbfbf;
+.post-card {
+  display: flex;
+  flex-direction: column;
+  margin: 16px 64px;
+  box-shadow: 3px 3px 10px -3px #999999;
   padding: 32px;
   border-radius: 8px;
-  width: 500px;
+  width: 800px;
+}
+
+.post-content {
+  width: 100%;
+}
+
+.img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.post-img {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 300px;
 }

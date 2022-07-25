@@ -4,7 +4,7 @@ const path = require("path");
 
 const userRoutes = require("./routes/user");
 const postRoutes = require("./routes/post");
-// const likeRoutes = require('./routes/like');
+const likeRoutes = require("./routes/like");
 
 const sequelize = require("./database");
 
@@ -35,10 +35,10 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use("/images", express.static(path.join(__dirname, "images")));
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use("/api/auth", userRoutes);
 app.use("/api/posts", postRoutes);
-// app.use('/api/posts', likeRoutes)
+app.use("/api/posts", likeRoutes);
 
 module.exports = app;

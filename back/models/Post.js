@@ -11,7 +11,7 @@ Post.init(
     description: { type: DataTypes.STRING, allowNull: false },
     imageUrl: { type: DataTypes.STRING },
     like: { type: DataTypes.NUMBER, defaultValue: 0 },
-    usersLike: { type: [DataTypes.STRING] },
+    usersLike: { type: DataTypes.ARRAY(DataTypes.STRING) },
   },
   {
     sequelize,

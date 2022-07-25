@@ -3,7 +3,12 @@ const service = require("../service/post");
 exports.createPost = (req, res) => {
   try {
     service
-      .createPost(req.body)
+      .createPost(
+        req.body.post,
+        req.protocol,
+        req.get("host"),
+        req.file.filename
+      )
       .then(() =>
         res.status(201).json({ message: "Post successfully created" })
       )

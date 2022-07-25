@@ -20,6 +20,7 @@ import { registerLocaleData } from '@angular/common';
 import * as fr from '@angular/common/locales/fr';
 import { httpInterceptorProviders } from './interceptors';
 
+
 @NgModule({
   declarations: [
     AppComponent,

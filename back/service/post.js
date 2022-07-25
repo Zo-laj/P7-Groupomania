@@ -1,12 +1,11 @@
 const Post = require("../models/Post");
 const fs = require("fs");
 
-exports.createPost = (post) => {
+exports.createPost = async (post, protocol, host, filename) => {
+  const newPost = await JSON.parse(post);
   return Post.create({
-    ...post,
-    // imageUrl: `${req.protocol}://${req.get("host")}/images/${
-    //   req.file.filename
-    // }`,
+    ...newPost,
+    imageUrl: `${protocol}://${host}/images/${filename}`,
   });
 };
 
