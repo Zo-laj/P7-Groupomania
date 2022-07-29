@@ -14,29 +14,27 @@ exports.getAllPosts = async () => {
 };
 
 exports.getOnePost = (id) => {
-  return Post.findOne({ where: { id } });
+  return Post.findByPk(id);
 };
 
-// exports.updatePost = (post, file, req, id) => {
-//   const postObject = file
-//     ? {
-//         ...JSON.parse(post),
-//         imageUrl: `${req.protocol}://${req.get("host")}/images/${
-//           file.filename
-//         }`,
-//       }
-//     : { ...req.body };
-//   return Post.updateOne({ _id: id }, { ...postObject, _id: id });
-// };
+exports.updatePost = (post, file, protocol, host, body, id) => {
+  const postObject = file
+    ? {
+        ...JSON.parse(post),
+        imageUrl: `${protocol}://${host}/images/${file.filename}`,
+      }
+    : { ...body };
+  return Post.upsert({ ...postObject, where: { id } });
+};
 
 exports.deletePost = async (id) => {
-  // const deletedPost = await Post.findOne({ id: id });
+  const deletedPost = await Post.findOne({ where: { id } });
 
-  // const filename = await deletedPost.imageUrl.split("/images/")[1];
+  const filename = await deletedPost.imageUrl.split("/images/")[1];
 
-  // fs.unlink(`images/${filename}`, () => {
-  //   Post.deleteOne({ _id: id });
-  // });
+  fs.unlink(`images/${filename}`, () => {
+    Post.destroy({ where: { id } });
+  });
 
   return await Post.destroy({
     where: { id },

@@ -40,16 +40,23 @@ exports.getOnePost = (req, res) => {
   }
 };
 
-// exports.updatePost = (req, res) => {
-//   try {
-//     service
-//       .updatePost(req.body.post, req.file, req, req.params.id)
-//       .then(() => res.status(200).json({ message: "Object updated !" }))
-//       .catch((error) => res.status(400).json({ error }));
-//   } catch {
-//     res.status(500).json({ error });
-//   }
-// };
+exports.updatePost = (req, res) => {
+  try {
+    service
+      .updatePost(
+        req.body.post,
+        req.file,
+        req.protocol,
+        req.get("host"),
+        req.body,
+        req.params.id
+      )
+      .then(() => res.status(200).json({ message: "Object updated !" }))
+      .catch((error) => res.status(400).json({ error }));
+  } catch {
+    res.status(500).json({ error });
+  }
+};
 
 exports.deletePost = (req, res) => {
   try {

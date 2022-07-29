@@ -13,7 +13,7 @@ exports.signup = async (email, password) => {
 };
 
 exports.login = async (email, password) => {
-  const validUser = await User.findOne({ email: email });
+  const validUser = await User.findOne({ where: { email } });
 
   const validPassword = await bcrypt.compare(password, validUser.password);
 

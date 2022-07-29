@@ -1,0 +1,24 @@
+<div class="post-container">
+  <div class="post-card" *ngIf="post$ | async as post">
+    <div class="post-header">
+      <h2>titre : {{ post.title }}</h2>
+      <p>Mis en ligne le {{ post.createdAt | date: "d MMMM YYYY à HH:MM" }}</p>
+      <p>Auteur : {{ post.author }}</p>
+    </div>
+    <div class="post-img">
+      <img
+        *ngIf="post.imageUrl"
+        [src]="post?.imageUrl"
+        [alt]="post.title"
+        class="img"
+      />
+    </div>
+    <div class="post-content">
+      <p>Contenu de l'article : {{ post.description }}</p>
+      <p>Like: {{ post.like }}</p>
+      <button (click)="onLike(+post.id)">{{ likeBtn }}</button>
+      <button (click)="onDelete()">Supprimer</button>
+      <button (click)="onModify()">Modifier</button>
+    </div>
+  </div>
+</div>
