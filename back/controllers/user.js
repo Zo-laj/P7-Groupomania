@@ -3,7 +3,7 @@ const userService = require("../service/user");
 exports.signup = (req, res) => {
   try {
     userService
-      .signup(req.body.email, req.body.password)
+      .signup(req.body.email, req.body.userName, req.body.password)
       .then(() =>
         res.status(201).json({ message: "User successfully created !" })
       )
@@ -26,6 +26,7 @@ exports.login = (req, res) => {
         }
         res.status(200).json({
           userId: user.validUser.id,
+          userName: user.validUser.userName,
           token: userService.createJwt(user.validUser.id),
         });
       })

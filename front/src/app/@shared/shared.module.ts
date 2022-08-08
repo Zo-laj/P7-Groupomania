@@ -7,6 +7,7 @@ import { SignupComponent } from './components/auth/signup/signup.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RouterModule } from '@angular/router';
 import { LikeBtnComponent } from './components/like-btn/like-btn.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { LikeBtnComponent } from './components/like-btn/like-btn.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    HttpClientModule
   ],
   declarations: [
     SignupComponent,
@@ -23,15 +25,16 @@ import { LikeBtnComponent } from './components/like-btn/like-btn.component';
     LikeBtnComponent,
   ],
   exports: [
+    CommonModule,
+    RouterModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
     SignupComponent,
     LoginComponent,
-    HeaderComponent,
     LandingPageComponent,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    LikeBtnComponent
+    HeaderComponent,
+    LikeBtnComponent,
   ]
 })
 

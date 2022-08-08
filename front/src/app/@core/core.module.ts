@@ -1,31 +1,23 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { httpInterceptorProviders } from './interceptors';
+import * as fr from '@angular/common/locales/fr';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from './services/auth.service';
-import { PostsService } from './services/posts.service';
-import { AuthGard } from './services/auth-gard.service';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     RouterModule,
-    HttpClientModule,
   ],
-  exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    HttpClientModule,
-  ],
+
   providers: [
-    AuthService,
-    PostsService,
-    AuthGard,
+    { provide: LOCALE_ID, useValue: 'fr-FR'},
+    httpInterceptorProviders,
   ]
 })
-export class CoreModule { }
+export class CoreModule {
+  constructor() {
+    registerLocaleData(fr.default);
+  }
+ }

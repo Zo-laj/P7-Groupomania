@@ -14,7 +14,7 @@ exports.getAllPosts = async () => {
 };
 
 exports.getOnePost = (id) => {
-  return Post.findByPk(id);
+  return Post.findByPk({ where: { id } });
 };
 
 exports.updatePost = (post, file, protocol, host, body, id) => {

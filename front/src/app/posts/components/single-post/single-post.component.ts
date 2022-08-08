@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first, Observable, take, tap } from 'rxjs';
-import { Post } from '../../@core/models/post.model';
-import { AuthService } from '../../@core/services/auth.service';
-import { PostsService } from '../../@core/services/posts.service';
+import { Post } from '../../../@core/models/post.model';
+import { AuthService } from '../../../@core/services/auth.service';
+import { PostsService } from '../../../@core/services/posts.service';
 
 @Component({
   selector: 'app-single-post',
@@ -17,7 +17,7 @@ export class SinglePostComponent implements OnInit {
   public likeBtn: string;
   public isAuth$: Observable<boolean>;
 
-  public constructor(private readonly postService: PostsService,
+  public constructor(private postService: PostsService,
     private authService: AuthService,
     private route: ActivatedRoute, 
     private router: Router ) { }
@@ -29,24 +29,23 @@ export class SinglePostComponent implements OnInit {
     this.post$ = this.postService.getPostById(postId);
   }
 
-  public onLike(postId: number) {
-    if (this.likeBtn === "J'aime") {
-      this.post$ = this.postService.likePost(postId, 'like').pipe(
-        
-        tap(() => {
-          this.post$ = this.postService.getPostById(postId);
-          this.likeBtn = "Je n'aime plus"
-        })
-      );
-    } else {
-      this.post$ = this.postService.likePost(postId, 'unlike').pipe(
-        tap(() => {
-          this.post$ = this.postService.getPostById(postId);
-          this.likeBtn = "J'aime"
-        })
-      );
-    }
-  }
+  // public onLike(postId: number) {
+  //   if (this.likeBtn === "J'aime") {
+  //     this.post$ = this.postService.likePost(postId, 'like').pipe(
+  //       tap((post) => {
+  //         this.post$ = this.postService.getPostById(postId);
+  //         this.likeBtn = "Je n'aime plus"
+  //       })
+  //     );
+  //   } else {
+  //     this.post$ = this.postService.likePost(postId, 'unlike').pipe(
+  //       tap(() => {
+  //         this.post$ = this.postService.getPostById(postId);
+  //         this.likeBtn = "J'aime"
+  //       })
+  //     );
+  //   }
+  // }
 
   public onModify() {
       this.post$.pipe(

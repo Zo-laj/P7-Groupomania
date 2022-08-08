@@ -1,15 +1,17 @@
-const Post = require("../models/Post");
+const Like = require("../models/Like");
 
-exports.likePost = async (userId, like, id) => {
-  // const updatePost = await Post.findOne({ where: { id } });
-
-  if (like === 1) {
-    // updatePost.usersLike.push(userId);
-    return await Post.increment({ like: +1 }, { where: { id } });
-    // return await Post.upsert(updatePost, { where: { id } });
-  } else if (like === -1) {
-    // updatePost.usersLike.pull(userId);
-    return Post.increment({ like: -1 }, { where: { id } });
-    // return await Post.upsert(updatePost, { where: { id } });
-  }
+exports.likePost = async (userId, like, postId) => {
+  return Like.findOne({
+    where: { postId, userId },
+  }).then((likeObject) => {
+    console.log(likeObject);
+    if (like === -1 && likeObject) {
+      return Like.destroy({ where: { id: likeObject.id } });
+    } else if (like === 1) {
+      return Like.create({
+        userId,
+        postId,
+      });
+    }
+  });
 };

@@ -3,11 +3,12 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-exports.signup = async (email, password) => {
+exports.signup = async (email, userName, password) => {
   const hash = await bcrypt.hash(password, 10);
 
   return User.create({
     email,
+    userName,
     password: hash,
   });
 };

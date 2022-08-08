@@ -22,8 +22,8 @@ export class AuthService {
     return this.userId;
   }
 
-  public createUser(email: string, password: string): Observable<User> {
-    return this.http.post<User>('http://localhost:3000/api/auth/signup', {email, password});
+  public createUser(email: string, userName: string, password: string): Observable<User> {
+    return this.http.post<User>('http://localhost:3000/api/auth/signup', {email,userName, password});
   }
 
   public loginUser(email: string, password: string) {

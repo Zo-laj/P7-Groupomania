@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, merge, MonoTypeOperatorFunction, Observable, shareReplay, Subject, switchMap, take, tap } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 import { Post } from '../models/post.model';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
@@ -27,7 +27,7 @@ export class PostsService {
   public constructor(private http: HttpClient,
                      private authService: AuthService) {
   }
-  
+
   public getAllPosts(): Observable<Post[]> {
     return this.posts$ = this.http.get<Post[]>('http://localhost:3000/api/posts').pipe(
       shareReplay(1))
@@ -48,7 +48,7 @@ export class PostsService {
   public likePost(postId: number, likeStatus: 'like' | 'unlike'): Observable<Post> {
     const like = ((likeStatus === 'like' ? 1 : -1));
     return  this.http.post<Post>(`http://localhost:3000/api/posts/${postId}/like`,
-            {userId: this.authService.getUserId(), like})
+            {postId, userId: this.authService.getUserId(), like})
   };
 
   public modifyPost() {

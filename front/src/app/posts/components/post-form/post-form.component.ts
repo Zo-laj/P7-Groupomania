@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EMPTY, first, switchMap, tap } from 'rxjs';
-import { Post } from '../../@core/models/post.model';
-import { PostsService } from '../../@core/services/posts.service';
+import { AuthService } from 'src/app/@core/services/auth.service';
+import { Post } from '../../../@core/models/post.model';
+import { PostsService } from '../../../@core/services/posts.service';
+import { PostComponent } from '../post/post.component';
 
 @Component({
   selector: 'app-post-form',
@@ -18,10 +20,13 @@ export class PostFormComponent {
   public imagePreview: string;
   public mode: string;
 
-  public constructor(private formBuilder: FormBuilder, 
-                    private readonly postService: PostsService,
-                    private router: Router, 
-                    private route: ActivatedRoute) 
+  public constructor(
+    private formBuilder: FormBuilder, 
+    private readonly postService: PostsService,
+    private router: Router, 
+    private route: ActivatedRoute,
+    private authService: AuthService
+    ) 
     { 
       this.route.params.pipe(
         switchMap(params => {
@@ -29,7 +34,7 @@ export class PostFormComponent {
             this.mode = 'new-post';
             this.postForm = this.formBuilder.group({
               title: [null, Validators.required],
-              author: [null, Validators.required],
+              author: [authService.getUserId()],
               description: [null, Validators.required],
               imageUrl: [null, Validators.required],
             });
@@ -52,8 +57,6 @@ export class PostFormComponent {
         ).subscribe();
   }
 
-
-
   onFileChange(event: Event) {
     const file : File = (event.target as HTMLInputElement).files![0];
     console.log(file)
@@ -68,17 +71,13 @@ export class PostFormComponent {
   }
 
   public onSubmitForm() {
-  this.postService.createPost(this.postForm.value, this.postForm.get('imageUrl')!.value).pipe(
-    first(),
-    ).subscribe(() => this.router.navigateByUrl('/posts'));
+    if (this.mode = 'new-post') {
+      this.postService.createPost(this.postForm.value, this.postForm.get('imageUrl')!.value).pipe(
+        first(),
+        ).subscribe(() => this.router.navigateByUrl('/posts'));
+    } 
+    else if (this.mode = 'edit-post') {
+      this.postService.modifyPost()
+      }
   }
 }
-
-
-// this.postPreview$ = this.postForm.valueChanges.pipe(
-//   map(formValue => ({
-//       ...formValue,
-//       createdDate: new Date(),
-//       imageUrl: this.imagePreview
-//   }))
-// );
