@@ -33,17 +33,18 @@ export class LikeBtnComponent implements OnInit {
     if (this.likeBtn === "J'aime") {
 
       this.postService.likePost(postId, 'like').pipe(
-        first()
+        tap(() => {
+          this.likeBtn = "Je n'aime plus";
+          ++this.postComponent.post.like;
+        })
         ).subscribe();
-      this.likeBtn = "Je n'aime plus";
-      ++this.postComponent.post.like;
         
     } else {
-      this.likeBtn = "J'aime";
-      --this.postComponent.post.like;
-
       this.postService.likePost(postId, 'unlike').pipe(
-        first()
+        tap( () => {
+          this.likeBtn = "J'aime";
+          --this.postComponent.post.like;
+        })
       ).subscribe();
     }
   }

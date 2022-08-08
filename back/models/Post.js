@@ -1,16 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../db.config");
 
-class Post extends Model {
-  // static associate(models) {
-  //   models.Post.hasMany(models.Like, { onDelete: "CASCADE" });
-  //   models.Post.belongsTo(models.User, {
-  //     foreignKey: {
-  //       allowNull: false,
-  //     },
-  //   });
-  // }
-}
+class Post extends Model {}
 
 Post.init(
   {

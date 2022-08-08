@@ -1,20 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../db.config");
 
-class Like extends Model {
-  // static associate(models) {
-  //   models.Like.belongsTo(models.User, {
-  //     foreignKey: {
-  //       allowNull: false,
-  //     },
-  //   });
-  //   models.Like.belongsTo(models.Post, {
-  //     foreignKey: {
-  //       allowNull: false,
-  //     },
-  //   });
-  // }
-}
+class Like extends Model {}
 
 Like.init(
   {
