@@ -1,7 +1,7 @@
-<div class="post-container">
-  <div class="post-card" (click)="onViewPost()">
+<div *ngIf="showPost" class="post-container">
+  <div class="post-card">
     <div class="post-header">
-      <p>Auteur : {{ post.author }}</p>
+      <p>Auteur : {{ post.userName }}</p>
       <h2>titre : {{ post.title }}</h2>
       <p>Mis en ligne le {{ post.createdAt | date: "d MMMM YYYY à HH:MM" }}</p>
     </div>
@@ -19,7 +19,9 @@
     </div>
     <div class="btn-container">
       <app-like-btn></app-like-btn>
+      <button (click)="onModify()">Modifier</button>
       <button (click)="onDelete()">Supprimer</button>
+      <button (click)="onViewPost()">Voir le post</button>
     </div>
   </div>
 </div>

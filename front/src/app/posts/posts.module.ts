@@ -6,7 +6,7 @@ import { PostComponent } from './components/post/post.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { SharedModule } from '../@shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -20,10 +20,9 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     SharedModule,
-    FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
 
   exports: [
@@ -31,10 +30,6 @@ import { RouterModule } from '@angular/router';
     PostListComponent,
     PostComponent, 
     PostFormComponent,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule
   ],
 })
 export class PostsModule { }

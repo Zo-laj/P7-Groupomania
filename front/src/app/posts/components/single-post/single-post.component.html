@@ -1,9 +1,10 @@
 <div class="post-container">
   <div class="post-card" *ngIf="post$ | async as post">
+    <button (click)="onBack()">back</button>
     <div class="post-header">
       <h2>titre : {{ post.title }}</h2>
       <p>Mis en ligne le {{ post.createdAt | date: "d MMMM YYYY à HH:MM" }}</p>
-      <p>Auteur : {{ post.author }}</p>
+      <p>by {{ post.userName }}</p>
     </div>
     <div class="post-img">
       <img

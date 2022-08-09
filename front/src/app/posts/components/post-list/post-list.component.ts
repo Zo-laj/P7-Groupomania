@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Post } from '../../../@core/models/post.model';
 import { PostsService } from '../../../@core/services/posts.service';
 
@@ -12,10 +12,9 @@ export class PostListComponent {
   public readonly posts$: Observable<Post[]>;
 
   public constructor(private readonly postService: PostsService) { 
-    this.posts$ = this.postService.getAllPosts()
+    this.posts$ = this.postService.getAllPosts().pipe(
+      map(post => post.sort( (a, b) => <any>new Date(b.createdAt) - <any>new Date(a.createdAt)))
+    )
   }
 
-
-
-  
 }

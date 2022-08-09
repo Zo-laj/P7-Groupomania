@@ -3,7 +3,6 @@ import { CommonModule, registerLocaleData } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { httpInterceptorProviders } from './interceptors';
 import * as fr from '@angular/common/locales/fr';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LandingPageComponent } from './@shared/components/landing-page/landing-page.component';
 import { PostFormComponent } from './posts/components/post-form/post-form.component';
 import { PostListComponent } from './posts/components/post-list/post-list.component';
 import { SinglePostComponent } from './posts/components/single-post/single-post.component';

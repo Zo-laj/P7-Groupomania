@@ -17,16 +17,22 @@ export class LikeBtnComponent implements OnInit {
   public likeBtn: string;
   public userId: string;
   public postId: number;
+  public isLiked: boolean;
 
   public constructor(
     private postService: PostsService,
     private authService: AuthService,
-    private postComponent: PostComponent ) { }
+    private postComponent: PostComponent,
+    private route: ActivatedRoute ) { }
 
   public ngOnInit() {
     this.userId = this.authService.getUserId();
     this.likeBtn = "J'aime";
-    this.postId = +this.postComponent.post.id;
+    if (this.route.snapshot.params['id']) {
+      this.postId = +this.route.snapshot.params['id'];
+    } else if (this.postComponent.post.id) {
+      this.postId = +this.postComponent.post.id
+    } 
   }  
 
   public onLike(postId: number) {
@@ -41,7 +47,7 @@ export class LikeBtnComponent implements OnInit {
         
     } else {
       this.postService.likePost(postId, 'unlike').pipe(
-        tap( () => {
+        tap(() => {
           this.likeBtn = "J'aime";
           --this.postComponent.post.like;
         })

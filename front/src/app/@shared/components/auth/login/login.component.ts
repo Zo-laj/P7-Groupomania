@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
+import { catchError, EMPTY, tap } from 'rxjs';
 import { AuthService } from '../../../../@core/services/auth.service';
 
 @Component({
@@ -12,6 +12,7 @@ import { AuthService } from '../../../../@core/services/auth.service';
 export class LoginComponent{
 
   public loginForm: FormGroup;
+  public errorMsg =  "";
 
   public constructor(
     private formBuilder: FormBuilder, 
@@ -28,7 +29,11 @@ export class LoginComponent{
     const email = this.loginForm.get('email')!.value;
     const password = this.loginForm.get('password')!.value;
     this.authService.loginUser(email, password).pipe(
-      tap(() => this.router.navigateByUrl('/posts'))
+      tap(() => this.router.navigateByUrl('/posts')),
+      catchError (error => {
+        this.errorMsg = "Utilisateur ou mot de passe incorrect";
+        return EMPTY;
+      })
       ).subscribe();
   }
 
