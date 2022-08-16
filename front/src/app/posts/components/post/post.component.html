@@ -18,9 +18,7 @@
       <p>likes: {{ post.like }}</p>
     </div>
     <div class="btn-container">
-      <app-like-btn></app-like-btn>
-      <button (click)="onModify()">Modifier</button>
-      <button (click)="onDelete()">Supprimer</button>
+      <app-like-btn [post]="post"></app-like-btn>
       <button (click)="onViewPost()">Voir le post</button>
     </div>
   </div>

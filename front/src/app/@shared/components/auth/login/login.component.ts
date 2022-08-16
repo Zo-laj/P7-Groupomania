@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, EMPTY, tap } from 'rxjs';
 import { AuthService } from '../../../../@core/services/auth.service';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +11,7 @@ import { AuthService } from '../../../../@core/services/auth.service';
 export class LoginComponent{
 
   public loginForm: FormGroup;
-  public errorMsg =  "";
+  public errorMsg: string;
 
   public constructor(
     private formBuilder: FormBuilder, 
@@ -23,7 +22,7 @@ export class LoginComponent{
         email: [null, [Validators.required, Validators.email]],
         password: [null, Validators.required]
       });
-    }
+  }
 
   public onLogin() {
     const email = this.loginForm.get('email')!.value;

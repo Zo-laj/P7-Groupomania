@@ -5,16 +5,19 @@ import { PostListComponent } from './posts/components/post-list/post-list.compon
 import { SinglePostComponent } from './posts/components/single-post/single-post.component';
 import { SignupComponent } from './@shared/components/auth/signup/signup.component';
 import { LoginComponent } from './@shared/components/auth/login/login.component';
-import { AuthGard } from './@core/services/auth-gard.service';
+import { AuthGuard } from './@core/services/auth-guard.service';
+import { AdminComponent } from './users/components/admin/admin.component';
+import { Role } from './@core/models/role.model';
 
 const routes: Routes = [
   
   { path: 'auth/signup', component: SignupComponent},
   { path: 'auth/login', component: LoginComponent},
-  { path: 'posts', component: PostListComponent, canActivate: [AuthGard]},
-  { path: 'posts/:id', component: SinglePostComponent, canActivate: [AuthGard]},
-  { path: 'new-post', component: PostFormComponent, canActivate: [AuthGard]},
-  { path: 'edit-post/:id', component: PostFormComponent, canActivate: [AuthGard] },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin] }},
+  { path: 'posts', component: PostListComponent, canActivate: [AuthGuard]},
+  { path: 'posts/:id', component: SinglePostComponent, canActivate: [AuthGuard]},
+  { path: 'new-post', component: PostFormComponent, canActivate: [AuthGuard]},
+  { path: 'edit-post/:id', component: PostFormComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'posts', pathMatch: 'full' },
   { path: '**', redirectTo: 'posts' }
 ];
@@ -22,6 +25,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGard]
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }

@@ -3,7 +3,7 @@ const likeService = require("../service/like");
 exports.likePost = (req, res) => {
   try {
     likeService
-      .likePost(req.body.userId, req.body.like, req.body.postId)
+      .likePost(req.body.userId, req.body.like, req.params.id)
       .then(() => {
         if (req.body.like === 1) {
           res.status(201).json({ message: "Like succesfull" });

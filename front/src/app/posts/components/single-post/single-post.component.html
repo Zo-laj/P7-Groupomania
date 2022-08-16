@@ -17,9 +17,9 @@
     <div class="post-content">
       <p>Contenu de l'article : {{ post.description }}</p>
       <p>Like: {{ post.like }}</p>
-      <app-like-btn></app-like-btn>
-      <button (click)="onDelete()">Supprimer</button>
+      <app-like-btn [post]="post"></app-like-btn>
       <button (click)="onModify()">Modifier</button>
+      <button (click)="onDelete()">Supprimer</button>
     </div>
   </div>
 </div>

@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { switchMap, tap } from 'rxjs';
 import { AuthService } from '../../../../@core/services/auth.service';
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',

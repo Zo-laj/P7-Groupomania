@@ -1,0 +1,20 @@
+<div>
+  <h4>Admin</h4>
+  <div>
+    <p>This page can be accessed <u>only by administrators</u>.</p>
+    <p>All users from secure (admin only) api end point:</p>
+    <div></div>
+    <ul *ngIf="users$">
+      <li *ngFor="let user of users$ | async">
+        <div *ngIf="showUser">
+          <p>Id: {{ user.id }}</p>
+          <p>Name: {{ user.userName }}</p>
+          <p>Email: {{ user.email }}</p>
+          <div *ngIf="user.role !== 'Admin'">
+            <button (click)="onDelete(user.id)">Delete</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

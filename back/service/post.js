@@ -9,7 +9,7 @@ exports.createPost = async (post, protocol, host, filename) => {
   });
 };
 
-exports.getAllPosts = async () => {
+exports.getAllPosts = () => {
   return Post.findAll();
 };
 
@@ -17,14 +17,14 @@ exports.getOnePost = (id) => {
   return Post.findOne({ where: { id } });
 };
 
-exports.updatePost = (post, file, protocol, host, body, id) => {
+exports.updatePost = (post, file, protocol, host, id) => {
   const postObject = file
     ? {
         ...JSON.parse(post),
         imageUrl: `${protocol}://${host}/images/${file.filename}`,
       }
-    : { ...body };
-  return Post.upsert({ ...postObject, where: { id } });
+    : { ...JSON.parse(post) };
+  return Post.update({ ...postObject }, { where: { id } });
 };
 
 exports.deletePost = async (id) => {

@@ -10,6 +10,7 @@ exports.signup = async (email, userName, password) => {
     email,
     userName,
     password: hash,
+    role: "User",
   });
 };
 
@@ -21,8 +22,18 @@ exports.login = async (email, password) => {
   return { validUser, validPassword };
 };
 
-exports.createJwt = (userId) => {
-  return jwt.sign({ userId }, `${process.env.SECRET}`, {
+exports.createJwt = (userId, userRole) => {
+  return jwt.sign({ userId, userRole }, `${process.env.SECRET}`, {
     expiresIn: "24h",
+  });
+};
+
+exports.getAllUsers = () => {
+  return User.findAll();
+};
+
+exports.deleteUser = async (id) => {
+  return await User.destroy({
+    where: { id },
   });
 };

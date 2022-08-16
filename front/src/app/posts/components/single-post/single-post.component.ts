@@ -13,16 +13,18 @@ import { PostsService } from '../../../@core/services/posts.service';
 
 export class SinglePostComponent {
 
-  public post$: Observable<Post>;
+  public readonly post$: Observable<Post>;
   public postId: string;
+  public currentUserId: string;
 
-  public constructor(private postService: PostsService,
-    private authService: AuthService,
+  public constructor(private readonly postService: PostsService,
+    private readonly authService: AuthService,
     private route: ActivatedRoute, 
     private router: Router ) 
     {
-      this.postId = this.route.snapshot.params['id']
+      this.postId = this.route.snapshot.params['id'];
       this.post$ = this.postService.getPostById(+this.postId);
+      this.currentUserId = this.authService.getcurrentUser().id;
     }
   
   public onModify() {

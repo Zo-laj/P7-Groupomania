@@ -17,24 +17,22 @@ export class PostFormComponent {
   public post: Post;
   public isAddMode: boolean;
   public imagePreview: string;
-  public mode: string;
   public postId: string;
 
   public constructor(
     private formBuilder: FormBuilder, 
     private readonly postService: PostsService,
+    private readonly authService: AuthService,
     private router: Router, 
     private route: ActivatedRoute,
-    private authService: AuthService,
     ) 
     { 
-      
       this.postId = this.route.snapshot.params['id'];
       this.isAddMode = !this.postId;
 
       this.postForm = this.formBuilder.group({
               title: [null, Validators.required],
-              userName: [this.authService.getUserName()],
+              userName: [this.authService.getcurrentUser().userName],
               description: [null, Validators.required],
               imageUrl: [null, Validators.required],
       });
@@ -48,7 +46,6 @@ export class PostFormComponent {
 
   onFileChange(event: Event) {
     const file : File = (event.target as HTMLInputElement).files![0];
-    console.log(file)
     this.postForm.get('imageUrl')!.setValue(file);
     this.postForm.updateValueAndValidity();
     
@@ -61,41 +58,14 @@ export class PostFormComponent {
 
   public onSubmitForm() {
     if (this.isAddMode) {
-      this.postService.createPost(this.postForm.value, this.postForm.get('imageUrl')!.value, ).pipe(
+      this.postService.createPost(this.postForm.value, this.postForm.get('imageUrl')!.value).pipe(
         first(),
         ).subscribe(() => this.router.navigateByUrl('/posts'));
     } 
     else if (!this.isAddMode) {
-      this.postService.modifyPost()
+      this.postService.modifyPost(+this.postId, this.postForm.value, this.postForm.get('imageUrl')!.value).pipe(
+        first(),
+        ).subscribe(() => this.router.navigateByUrl('/posts'));
       }
   }
 }
-
-  
-      // this.route.params.pipe(
-      //   switchMap(params => {
-      //     if (!params['id']) {
-      //       this.mode = 'new-post';
-      //       this.postForm = this.formBuilder.group({
-      //         title: [null, Validators.required],
-      //         userName: [this.authService.getUserName()],
-      //         description: [null, Validators.required],
-      //         imageUrl: [null, Validators.required],
-      //       });
-      //       return EMPTY;
-      //     } else {
-      //       this.mode = 'edit-post';
-      //       return this.postService.getPostById(params['id'])
-      //     }
-      //   }),
-      //   tap(post => {
-      //     if (post) {
-      //       this.postForm = this.formBuilder.group({
-      //         title: [post.title, Validators.required],
-      //         userName: [this.authService.getUserName(), Validators.required],
-      //         description: [post.description, Validators.required],
-      //         imageUrl: [post.imageUrl, Validators.required],
-      //       });
-      //     }
-      //   }) 
-      //   ).subscribe();

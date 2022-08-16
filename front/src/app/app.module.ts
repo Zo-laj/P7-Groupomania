@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './@core/core.module';
 import { PostsModule } from './posts/posts.module';
 import { SharedModule } from './@shared/shared.module';
+import { UsersModule } from './users/users.module';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { SharedModule } from './@shared/shared.module';
     CoreModule,
     SharedModule,
     PostsModule,
+    UsersModule
   ],
   bootstrap: [AppComponent]
 })

@@ -25,12 +25,34 @@ exports.login = (req, res) => {
           return res.status(401).json({ error: "Password incorrect !" });
         }
         res.status(200).json({
-          userId: user.validUser.id,
+          id: user.validUser.id,
           userName: user.validUser.userName,
-          token: userService.createJwt(user.validUser.id),
+          token: userService.createJwt(user.validUser.id, user.validUser.role),
         });
       })
       .catch((error) => res.status(500).json({ error }));
+  } catch {
+    res.status(500).json({ error });
+  }
+};
+
+exports.getAllUsers = (req, res) => {
+  try {
+    userService
+      .getAllUsers()
+      .then((users) => res.status(200).json(users))
+      .catch((error) => res.status(400).json({ error }));
+  } catch {
+    res.status(500).json({ error });
+  }
+};
+
+exports.deleteUser = (req, res) => {
+  try {
+    userService
+      .deleteUser(req.params.id)
+      .then(() => res.status(200).json({ message: "User deleted!" }))
+      .catch((error) => res.status(400).json({ error }));
   } catch {
     res.status(500).json({ error });
   }

@@ -11,7 +11,8 @@ export class PostListComponent {
 
   public readonly posts$: Observable<Post[]>;
 
-  public constructor(private readonly postService: PostsService) { 
+  public constructor(private readonly postService: PostsService) 
+  { 
     this.posts$ = this.postService.getAllPosts().pipe(
       map(post => post.sort( (a, b) => <any>new Date(b.createdAt) - <any>new Date(a.createdAt)))
     )
