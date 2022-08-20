@@ -5,7 +5,10 @@ export class Post {
   public imageUrl: string;
   public like: number; 
   public createdAt: Date;
-  public userName: string;
+  public userId: string;
+  public User: {
+    userName: string
+  };
     
   public constructor(data: Partial<Post> = {}) {
       Object.assign(this, data);

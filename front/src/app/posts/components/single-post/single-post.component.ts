@@ -15,7 +15,6 @@ export class SinglePostComponent {
 
   public readonly post$: Observable<Post>;
   public postId: string;
-  public currentUserId: string;
 
   public constructor(private readonly postService: PostsService,
     private readonly authService: AuthService,
@@ -24,7 +23,6 @@ export class SinglePostComponent {
     {
       this.postId = this.route.snapshot.params['id'];
       this.post$ = this.postService.getPostById(+this.postId);
-      this.currentUserId = this.authService.getcurrentUser().id;
     }
   
   public onModify() {

@@ -16,7 +16,7 @@ export class PostsService {
 
   public getAllPosts(): Observable<Post[]> {
     return this.http.get<Post[]>('http://localhost:3000/api/posts').pipe(
-      shareReplay(1))
+      shareReplay(1));
   };
 
   public createPost(post: Post, image:File): Observable<Post> {

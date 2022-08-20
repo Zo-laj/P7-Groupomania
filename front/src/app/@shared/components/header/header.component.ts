@@ -10,7 +10,6 @@ import { AuthService } from '../../../@core/services/auth.service';
 export class HeaderComponent {
 
   public readonly isLoggedIn$: Observable<boolean>;
-  public readonly isAdmin$: Observable<boolean>
   
   public constructor( 
     private readonly authService : AuthService,
@@ -18,11 +17,9 @@ export class HeaderComponent {
     {
     this.isLoggedIn$ = this.authService.isLoggedIn$.pipe(
     shareReplay(1));
-    this.isAdmin$ = this.authService.isAdmin$.pipe(
-    shareReplay(1));
   }
 
-  onLogout() {
+  public onLogout() : void {
     this.authService.logoutUser();
     this.router.navigate(['auth/login']);
   }

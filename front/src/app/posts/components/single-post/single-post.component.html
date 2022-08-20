@@ -4,7 +4,7 @@
     <div class="post-header">
       <h2>titre : {{ post.title }}</h2>
       <p>Mis en ligne le {{ post.createdAt | date: "d MMMM YYYY à HH:MM" }}</p>
-      <p>by {{ post.userName }}</p>
+      <p>by {{ post.User.userName }}</p>
     </div>
     <div class="post-img">
       <img

@@ -1,7 +1,7 @@
 <div *ngIf="showPost" class="post-container">
   <div class="post-card">
     <div class="post-header">
-      <p>Auteur : {{ post.userName }}</p>
+      <p>Auteur : {{ post.User.userName }}</p>
       <h2>titre : {{ post.title }}</h2>
       <p>Mis en ligne le {{ post.createdAt | date: "d MMMM YYYY à HH:MM" }}</p>
     </div>

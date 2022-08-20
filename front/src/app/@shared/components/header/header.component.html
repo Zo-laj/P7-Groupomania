@@ -2,7 +2,7 @@
   <div class="nav-bar">
     <ul>
       <li routerLinkActive="active">
-        <a routerLink="admin" *ngIf="isAdmin$ | async">Admin</a>
+        <a routerLink="admin" *isAdmin>Admin</a>
       </li>
       <li routerLinkActive="active">
         <a routerLink="posts" *ngIf="isLoggedIn$ | async">Posts</a>

@@ -8,7 +8,15 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RouterModule } from '@angular/router';
 import { LikeBtnComponent } from './components/like-btn/like-btn.component';
 import { HttpClientModule } from '@angular/common/http';
+import { IsAdminDirective } from './directives/is-admin.directive';
 
+const COMPONENTS : any[] = [
+  SignupComponent,
+  LoginComponent,
+  HeaderComponent,
+  LandingPageComponent,
+  LikeBtnComponent,
+]
 @NgModule({
   imports: [
     CommonModule,
@@ -18,11 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   declarations: [
-    SignupComponent,
-    LoginComponent,
-    HeaderComponent,
-    LandingPageComponent,
-    LikeBtnComponent,
+    ...COMPONENTS,
+    IsAdminDirective,
   ],
   exports: [
     CommonModule,
@@ -30,11 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    SignupComponent,
-    LoginComponent,
-    LandingPageComponent,
-    HeaderComponent,
-    LikeBtnComponent,
+    ...COMPONENTS,
+    IsAdminDirective,
   ]
 })
 

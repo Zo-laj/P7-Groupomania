@@ -1,20 +1,31 @@
 const Post = require("../models/Post");
 const fs = require("fs");
+const User = require("../models/User");
+const Like = require("../models/Like");
+
+Post.belongsTo(User);
 
 exports.createPost = async (post, protocol, host, filename) => {
   const newPost = await JSON.parse(post);
+  const user = await User.findOne({ where: { id: newPost.userId } });
   return Post.create({
     ...newPost,
     imageUrl: `${protocol}://${host}/images/${filename}`,
+    UserId: user.id,
   });
 };
 
 exports.getAllPosts = () => {
-  return Post.findAll();
+  return Post.findAll({
+    include: [{ model: User, attributes: ["userName"] }, { model: Like }],
+  });
 };
 
 exports.getOnePost = (id) => {
-  return Post.findOne({ where: { id } });
+  return Post.findOne({
+    where: { id },
+    include: [{ model: User, attributes: ["userName"] }, { model: Like }],
+  });
 };
 
 exports.updatePost = (post, file, protocol, host, id) => {

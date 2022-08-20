@@ -32,7 +32,7 @@ export class PostFormComponent {
 
       this.postForm = this.formBuilder.group({
               title: [null, Validators.required],
-              userName: [this.authService.getcurrentUser().userName],
+              userId: [this.authService.getcurrentUser().id],
               description: [null, Validators.required],
               imageUrl: [null, Validators.required],
       });

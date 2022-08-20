@@ -5,11 +5,8 @@ class Like extends Model {}
 
 Like.init(
   {
-    postId: {
-      type: DataTypes.STRING,
-    },
-    userId: {
-      type: DataTypes.STRING,
+    likeStatus: {
+      type: DataTypes.BOOLEAN,
     },
   },
   {
