@@ -8,16 +8,10 @@ import { AuthService } from '../../../@core/services/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-
-  public readonly isLoggedIn$: Observable<boolean>;
   
   public constructor( 
     private readonly authService : AuthService,
-    private router: Router) 
-    {
-    this.isLoggedIn$ = this.authService.isLoggedIn$.pipe(
-    shareReplay(1));
-  }
+    private router: Router) {}
 
   public onLogout() : void {
     this.authService.logoutUser();

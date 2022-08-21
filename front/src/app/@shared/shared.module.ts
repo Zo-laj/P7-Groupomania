@@ -9,6 +9,8 @@ import { RouterModule } from '@angular/router';
 import { LikeBtnComponent } from './components/like-btn/like-btn.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IsAdminDirective } from './directives/is-admin.directive';
+import { IsLoggedInDirective } from './directives/is-logged-in.directive';
+import { IsLoggedOutDirective } from './directives/is-logged-out.directive';
 
 const COMPONENTS : any[] = [
   SignupComponent,
@@ -28,6 +30,8 @@ const COMPONENTS : any[] = [
   declarations: [
     ...COMPONENTS,
     IsAdminDirective,
+    IsLoggedInDirective,
+    IsLoggedOutDirective,
   ],
   exports: [
     CommonModule,
@@ -37,6 +41,8 @@ const COMPONENTS : any[] = [
     FormsModule,
     ...COMPONENTS,
     IsAdminDirective,
+    IsLoggedInDirective,
+    IsLoggedOutDirective
   ]
 })
 
