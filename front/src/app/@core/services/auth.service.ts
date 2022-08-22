@@ -39,10 +39,6 @@ export class AuthService {
     return this.currentUserSubject$.value;
   };
 
-  public isAdmin() {
-    return this.isLoggedIn$ && this.getcurrentUser().role! === Role.Admin;
-  };
-
   public createUser(email: string, userName: string, password: string): Observable<User> {
     return this.http.post<User>('http://localhost:3000/api/auth/signup', {email, userName, password});
   };

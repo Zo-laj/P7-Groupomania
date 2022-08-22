@@ -15,7 +15,7 @@ export class SinglePostComponent {
 
   public readonly post$: Observable<Post>;
   public postId: string;
-  public currentUserId: string;
+  public currentUser: string;
 
   public constructor(private readonly postService: PostsService,
     private readonly authService: AuthService,
@@ -24,8 +24,8 @@ export class SinglePostComponent {
     {
       this.postId = this.route.snapshot.params['id'];
       this.post$ = this.postService.getPostById(+this.postId);
-      this.currentUserId = this.authService.getcurrentUser().id; 
-      console.log(this.currentUserId);
+      this.currentUser = (JSON.parse(atob(this.authService.getcurrentUser().token!.split('.')[1]))).userId; 
+      console.log(this.currentUser);
     }
   
   public onModify() {

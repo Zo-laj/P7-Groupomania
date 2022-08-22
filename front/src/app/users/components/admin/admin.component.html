@@ -6,13 +6,11 @@
     <div></div>
     <ul *ngIf="users$">
       <li *ngFor="let user of users$ | async">
-        <div *ngIf="showUser">
-          <p>Id: {{ user.id }}</p>
-          <p>Name: {{ user.userName }}</p>
-          <p>Email: {{ user.email }}</p>
-          <div *ngIf="user.role !== 'Admin'">
-            <button (click)="onDelete(user.id)">Delete</button>
-          </div>
+        <p>Id: {{ user.id }}</p>
+        <p>Name: {{ user.userName }}</p>
+        <p>Email: {{ user.email }}</p>
+        <div *ngIf="user.role !== 'Admin'">
+          <button (click)="onDelete(user.id)">Delete</button>
         </div>
       </li>
     </ul>

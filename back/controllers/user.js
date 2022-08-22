@@ -25,9 +25,12 @@ exports.login = (req, res) => {
           return res.status(401).json({ error: "Password incorrect !" });
         }
         res.status(200).json({
-          id: user.validUser.id,
-          userName: user.validUser.userName,
-          token: userService.createJwt(user.validUser.id, user.validUser.role),
+          token: userService.createJwt(
+            user.validUser.id,
+            user.validUser.role,
+            user.validUser.id,
+            user.validUser.userName
+          ),
         });
       })
       .catch((error) => res.status(500).json({ error }));

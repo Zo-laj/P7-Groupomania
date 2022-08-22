@@ -2,8 +2,33 @@
   <div class="no-post" *ngIf="posts.length <= 0">
     <p>No post to display!</p>
   </div>
-
-  <div class="post-list" *ngIf="posts.length > 0">
-    <app-post *ngFor="let post of posts$ | async" [post]="post"></app-post>
+  <div class="post-list" *ngFor="let post of posts$ | async">
+    <div class="post-container">
+      <div class="post-card">
+        <div class="post-header">
+          <p>Auteur : {{ post.User.userName }}</p>
+          <h2>titre : {{ post.title }}</h2>
+          <p>
+            Mis en ligne le {{ post.createdAt | date: "d MMMM YYYY à HH:MM" }}
+          </p>
+        </div>
+        <div class="post-img">
+          <img
+            class="img"
+            *ngIf="post.imageUrl"
+            [src]="post.imageUrl"
+            [alt]="post.title"
+          />
+        </div>
+        <div class="post-content">
+          <p>Contenu de l'article : {{ post.description }}</p>
+          <p>likes: {{ post.like }}</p>
+        </div>
+        <div class="btn-container">
+          <app-like-btn [post]="post"></app-like-btn>
+          <button (click)="onViewPost(post.id)">Voir le post</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

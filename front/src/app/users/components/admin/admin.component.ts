@@ -13,10 +13,8 @@ import { UserService } from 'src/app/@core/services/users.service';
 export class AdminComponent {
     
     public readonly users$: Observable<User[]>;
-    public showUser: boolean;
 
     public constructor(private readonly userService: UserService) { 
-        this.showUser = true;
         this.users$ = this.userService.getAllUsers();
     }
 
