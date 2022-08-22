@@ -5,7 +5,7 @@ export class Post {
   public imageUrl: string;
   public like: number; 
   public createdAt: Date;
-  public userId: string;
+  public UserId: string;
   public User: {
     userName: string
   };

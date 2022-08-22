@@ -18,8 +18,12 @@
       <p>Contenu de l'article : {{ post.description }}</p>
       <p>Like: {{ post.like }}</p>
       <app-like-btn [post]="post"></app-like-btn>
-      <button (click)="onModify()">Modifier</button>
-      <button (click)="onDelete()">Supprimer</button>
+      <button *ngIf="post.UserId === currentUserId" (click)="onModify()">
+        Modifier
+      </button>
+      <button *ngIf="post.UserId === currentUserId" (click)="onDelete()">
+        Supprimer
+      </button>
     </div>
   </div>
 </div>
