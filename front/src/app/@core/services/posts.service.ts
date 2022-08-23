@@ -30,11 +30,12 @@ export class PostsService {
     return this.http.get<Post>(`http://localhost:3000/api/posts/${postId}`)
   };
 
-  public likePost(postId: number, likeStatus: 'like' | 'unlike'): Observable<Post> {
+  public likePost(postId: number, userId: string, likeStatus: 'like' | 'unlike'): Observable<Post> {
     const like = ((likeStatus === 'like' ? 1 : -1));
     return  this.http.post<Post>(`http://localhost:3000/api/posts/${postId}/like`,
-            {postId, userId: this.authService.getcurrentUser().id, like})
+            {postId, userId, like})
   };
+
 
   public modifyPost(postId: number, post: Post, image:File): Observable<Post> {
     const formData = new FormData;

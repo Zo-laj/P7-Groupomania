@@ -32,7 +32,7 @@ export class PostFormComponent {
 
       this.postForm = this.formBuilder.group({
               title: [null, Validators.required],
-              userId: [this.authService.getcurrentUser().id],
+              userId: [(JSON.parse(atob(this.authService.getcurrentUser().token!.split('.')[1]))).userId],
               description: [null, Validators.required],
               imageUrl: [null, Validators.required],
       });

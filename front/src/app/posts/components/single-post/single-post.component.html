@@ -16,12 +16,12 @@
     </div>
     <div class="post-content">
       <p>Contenu de l'article : {{ post.description }}</p>
-      <p>Like: {{ post.like }}</p>
+      <p>Like: {{ post.numberOfLikes }}</p>
       <app-like-btn [post]="post"></app-like-btn>
-      <button *ngIf="post.UserId == currentUser" (click)="onModify()">
+      <button *ngIf="post.UserId == currentUserId" (click)="onModify()">
         Modifier
       </button>
-      <button *ngIf="post.UserId == currentUser" (click)="onDelete()">
+      <button *ngIf="post.UserId == currentUserId" (click)="onDelete()">
         Supprimer
       </button>
     </div>

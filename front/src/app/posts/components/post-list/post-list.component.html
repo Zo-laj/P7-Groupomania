@@ -22,7 +22,7 @@
         </div>
         <div class="post-content">
           <p>Contenu de l'article : {{ post.description }}</p>
-          <p>likes: {{ post.like }}</p>
+          <p>likes: {{ post.numberOfLikes }}</p>
         </div>
         <div class="btn-container">
           <app-like-btn [post]="post"></app-like-btn>

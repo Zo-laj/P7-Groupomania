@@ -6,14 +6,18 @@ Like.belongsTo(User);
 Like.belongsTo(Post);
 
 exports.likePost = async (userId, like, postId) => {
-  const likeObject = await Like.findOne({ where: { postId } });
+  const likeObject = await Like.findOne({
+    where: { PostId: postId, UserId: userId },
+  });
+  console.log(likeObject);
 
   if (like === -1 && likeObject) {
     return Like.destroy({ where: { id: likeObject.id } });
-  } else if (like === 1) {
+  } else if (like === 1 && !likeObject) {
     return Like.create({
-      userId,
-      postId,
+      UserId: userId,
+      PostId: postId,
+      likeStatus: true,
     });
   }
 };

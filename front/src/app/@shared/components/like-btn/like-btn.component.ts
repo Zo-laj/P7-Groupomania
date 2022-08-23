@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { tap } from 'rxjs';
+import { BehaviorSubject, first, map, Observable, tap } from 'rxjs';
 import { Post } from 'src/app/@core/models/post.model';
 import { AuthService } from 'src/app/@core/services/auth.service';
 import { PostsService } from 'src/app/@core/services/posts.service';
@@ -14,30 +14,31 @@ export class LikeBtnComponent {
   public post: Post;
 
   public likeBtn: string;
-  public userId: string;
+  public currentUserId: string;
+  public numberOfLikes: number;
 
   public constructor(
     private postService: PostsService,
     private authService: AuthService) { 
-
-      this.userId = this.authService.getcurrentUser().id;
-      this.likeBtn = "J'aime";
+      this.currentUserId = (JSON.parse(atob(this.authService.getcurrentUser().token!.split('.')[1]))).userId;
     }
 
   public onLike(postId: number) {
-    if (this.likeBtn === "J'aime") {
-      this.postService.likePost(postId, 'like').pipe(
+    if (this.post.isLiked === false) {
+      this.postService.likePost(postId, this.currentUserId, 'like').pipe(
+        first(),
         tap(() => {
-          this.likeBtn = "Je n'aime plus";
-          this.post.like++;
+          this.post.isLiked = true;
+          this.post.numberOfLikes++;
         })
         ).subscribe();
         
-    } else {
-      this.postService.likePost(postId, 'unlike').pipe(
+    } else if (this.post.isLiked === true) {
+      this.postService.likePost(postId, this.currentUserId, 'unlike').pipe(
+        first(),
         tap(() => {
-          this.likeBtn = "J'aime";
-          this.post.like--;
+          this.post.isLiked = false;
+          this.post.numberOfLikes--;
         })
       ).subscribe();
     }

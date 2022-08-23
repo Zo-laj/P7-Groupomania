@@ -1,1 +1,10 @@
-<button class="like-btn" (click)="onLike(+post.id)">{{ likeBtn }}</button>
+<button
+  class="like-btn"
+  [ngClass]="{
+    'is-liked-btn': post.isLiked === true,
+    'is-not-liked-btn': post.isLiked === false
+  }"
+  (click)="onLike(+post.id)"
+>
+  {{ likeBtn }}
+</button>
