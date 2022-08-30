@@ -1,29 +1,49 @@
 <div class="post-container">
   <div class="post-card" *ngIf="post$ | async as post">
-    <button (click)="onBack()">back</button>
+    <div class="top-bar">
+      <div class="user">
+        <i
+          (click)="onBack()"
+          class="fa-solid fa-arrow-left btn"
+          alt="Go back button"
+        ></i>
+        <i
+          class="fa-solid fa-circle-user"
+          id="user-picto"
+          alt="user profile picto"
+        ></i>
+        <p>{{ post.User.userName }}</p>
+      </div>
+      <div class="delete-update-btn">
+        <i
+          *ngIf="post.UserId == currentUserId"
+          (click)="onModify()"
+          class="fa-solid fa-pen btn"
+          alt="Update post button"
+        ></i>
+        <i
+          *ngIf="post.UserId == currentUserId"
+          (click)="onDelete()"
+          class="fa-solid fa-trash-can btn"
+          alt="Delete Post button"
+        ></i>
+      </div>
+    </div>
     <div class="post-header">
-      <h2>titre : {{ post.title }}</h2>
-      <p>Mis en ligne le {{ post.createdAt | date: "d MMMM YYYY à HH:MM" }}</p>
-      <p>by {{ post.User.userName }}</p>
+      <h1>{{ post.title }}</h1>
+      <p>{{ post.createdAt | date: "d MMMM YYYY à HH:MM" }}</p>
     </div>
     <div class="post-img">
-      <img
-        *ngIf="post.imageUrl"
-        [src]="post?.imageUrl"
-        [alt]="post.title"
-        class="img"
-      />
+      <img *ngIf="post.imageUrl" [src]="post?.imageUrl" [alt]="post.title" />
     </div>
     <div class="post-content">
-      <p>Contenu de l'article : {{ post.description }}</p>
-      <p>Like: {{ post.numberOfLikes }}</p>
+      <p>{{ post.description }}</p>
+    </div>
+    <div class="bottom-bar">
+      <i class="fa-regular fa-heart" id="show-likes">
+        {{ post.numberOfLikes }}</i
+      >
       <app-like-btn [post]="post"></app-like-btn>
-      <button *ngIf="post.UserId == currentUserId" (click)="onModify()">
-        Modifier
-      </button>
-      <button *ngIf="post.UserId == currentUserId" (click)="onDelete()">
-        Supprimer
-      </button>
     </div>
   </div>
 </div>

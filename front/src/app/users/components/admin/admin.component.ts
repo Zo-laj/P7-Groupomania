@@ -16,7 +16,7 @@ export class AdminComponent {
 
     public constructor(private readonly userService: UserService) { 
         this.users$ = this.userService.getAllUsers();
-    }
+    };
 
     public onDelete(userId:string) {
         this.userService.deleteUser(userId).pipe(
@@ -28,5 +28,5 @@ export class AdminComponent {
                 })
             )
         )
-    }
+    };
 }

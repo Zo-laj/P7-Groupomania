@@ -28,11 +28,9 @@ export class PostListComponent {
       tap((posts: Post[]) => {
         posts.map((post: Post) => {
           post.numberOfLikes = post.Likes.length;
-          if(post.Likes.find((likes : any) => likes.UserId === this.currentUserId )) {
-            console.log('yes');
+          if(post.Likes.find((like : any) => like.UserId === this.currentUserId )) {
             post.isLiked = true;
           } else {
-            console.log('no');
             post.isLiked = false;
           };   
         })

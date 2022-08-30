@@ -5,28 +5,31 @@
   <div class="post-list" *ngFor="let post of posts$ | async">
     <div class="post-container">
       <div class="post-card">
+        <div class="top-bar">
+          <div class="user">
+            <i class="fa-solid fa-circle-user" id="user-picto"></i>
+            <p id="user-name">{{ post.User.userName }}</p>
+          </div>
+          <i
+            (click)="onViewPost(post.id)"
+            class="fa-solid fa-angles-right btn"
+          ></i>
+        </div>
         <div class="post-header">
-          <p>Auteur : {{ post.User.userName }}</p>
-          <h2>titre : {{ post.title }}</h2>
-          <p>
-            Mis en ligne le {{ post.createdAt | date: "d MMMM YYYY à HH:MM" }}
-          </p>
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.createdAt | date: "d MMMM YYYY à HH:MM" }}</p>
         </div>
         <div class="post-img">
-          <img
-            class="img"
-            *ngIf="post.imageUrl"
-            [src]="post.imageUrl"
-            [alt]="post.title"
-          />
+          <img *ngIf="post.imageUrl" [src]="post.imageUrl" [alt]="post.title" />
         </div>
         <div class="post-content">
-          <p>Contenu de l'article : {{ post.description }}</p>
-          <p>likes: {{ post.numberOfLikes }}</p>
+          <p>{{ post.description }}</p>
         </div>
-        <div class="btn-container">
+        <div class="btn-bar">
+          <i class="fa-regular fa-heart" id="show-likes">
+            {{ post.numberOfLikes }}</i
+          >
           <app-like-btn [post]="post"></app-like-btn>
-          <button (click)="onViewPost(post.id)">Voir le post</button>
         </div>
       </div>
     </div>

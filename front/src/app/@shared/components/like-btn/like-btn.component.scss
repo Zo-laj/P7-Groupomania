@@ -1,13 +1,12 @@
 .is-liked-btn {
-  background-color: green;
+  color: #fd2d01;
 }
 
 .is-not-liked-btn {
-  background-color: grey;
+  color: #4e5166;
 }
 
-.like-btn {
-  width: 48px;
-  height: 32px;
-  margin: 16px;
+.btn {
+  cursor: pointer;
+  font-size: 32px;
 }

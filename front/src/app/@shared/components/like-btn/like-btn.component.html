@@ -1,10 +1,9 @@
-<button
-  class="like-btn"
+<i
   [ngClass]="{
     'is-liked-btn': post.isLiked === true,
     'is-not-liked-btn': post.isLiked === false
   }"
   (click)="onLike(+post.id)"
->
-  {{ likeBtn }}
-</button>
+  class="fa-solid fa-heart btn"
+  alt="Like button"
+></i>

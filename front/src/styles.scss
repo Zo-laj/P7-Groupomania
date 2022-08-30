@@ -9,13 +9,21 @@ body {
   margin: 0;
 }
 
-$colors: (
-  primary-color: #fd2d01,
-  secondary-color: #ffd7d7,
-  tertiary-color: #4e5166,
-);
+$primary-color: #fd2d01;
+$secondary-color: #ffd7d7;
+$tertiary-color: #4e5166;
+
+h1 {
+  padding: 0;
+  margin: 0;
+}
 
 h2 {
+  padding: 0;
+  margin: 0;
+}
+
+p {
   padding: 0;
   margin: 0;
 }
