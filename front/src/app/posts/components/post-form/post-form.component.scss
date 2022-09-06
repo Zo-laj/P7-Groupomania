@@ -2,7 +2,8 @@ h1 {
   display: flex;
   justify-content: center;
   margin: 0;
-  padding: 32px;
+  font-size: 24px;
+  padding-bottom: 16px;
 }
 
 .form-container {
@@ -23,8 +24,38 @@ h1 {
 
 .form-group {
   display: flex;
-  justify-content: space-between;
-  margin: 8px 0;
+  flex-direction: column;
+  margin-bottom: 20px;
+  & label {
+    padding-bottom: 8px;
+  }
+  & span {
+    color: #fd2d01;
+    font-weight: bold;
+  }
+  & .input {
+    border: 1px solid #bebebe;
+    border-radius: 2px;
+    padding: 8px;
+    outline: none;
+    font-family: "Lato", sans-serif;
+    letter-spacing: 0.1em;
+  }
+  & button {
+    cursor: pointer;
+    background: #fd2b01b7;
+    padding: 10px;
+    border: none;
+    color: #fff;
+    box-shadow: 1px 1px 4px #dadada;
+    border-radius: 3px;
+    margin-top: 12px;
+    width: 184px;
+    font-weight: 700;
+    font-family: "Lato", sans-serif;
+    letter-spacing: 0.1em;
+    font-size: 14px;
+  }
 }
 
 .submit-btn {

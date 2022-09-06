@@ -1,26 +1,26 @@
-<h1>Inscription</h1>
 <section class="form-container">
   <form [formGroup]="signupForm">
+    <h1>Inscription</h1>
     <div class="form-element">
-      <label for="email">Email</label>
+      <label for="email">Email<span>*</span></label>
       <input
         type="email"
-        class="form-control"
+        class="form-control input"
         id="email"
         formControlName="email"
       />
     </div>
     <div class="form-element">
-      <label for="userName">Nom d'utilisateur</label>
+      <label for="userName">Nom d'utilisateur<span>*</span></label>
       <input
         type="text"
-        class="form-control"
+        class="form-control input"
         id="userName"
         formControlName="userName"
       />
     </div>
     <div class="form-element">
-      <label for="password">Mot de passe</label>
+      <label for="password">Mot de passe<span>*</span></label>
       <input
         type="password"
         class="form-control"
