@@ -40,6 +40,7 @@ h1 {
     outline: none;
     font-family: "Lato", sans-serif;
     letter-spacing: 0.1em;
+    resize: none;
   }
   & button {
     cursor: pointer;
@@ -61,6 +62,17 @@ h1 {
 .submit-btn {
   display: flex;
   justify-content: flex-end;
+  & button {
+    cursor: pointer;
+    border: none;
+    background: #fd2b01b7;
+    color: #fff;
+    box-shadow: 1px 1px 4px #dadada;
+    padding: 8px;
+    border-radius: 3px;
+    font-family: "Lato", sans-serif;
+    letter-spacing: 0.1em;
+  }
 }
 
 .file-input {

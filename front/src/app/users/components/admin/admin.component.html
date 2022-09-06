@@ -1,17 +1,30 @@
 <div>
-  <h4>Admin</h4>
+  <div class="header">
+    <h4>Admin Page</h4>
+    <p>Cette page est uniquement accessible <u>par un administrateur</u>.</p>
+  </div>
   <div>
-    <p>This page can be accessed <u>only by administrators</u>.</p>
-    <p>All users from secure (admin only) api end point:</p>
-    <div></div>
-    <ul *ngIf="users$">
-      <li *ngFor="let user of users$ | async">
-        <p>Id: {{ user.id }}</p>
-        <p>Name: {{ user.userName }}</p>
-        <p>Email: {{ user.email }}</p>
-        <div *ngIf="user.role !== 'Admin'">
-          <button (click)="onDelete(user.id)">Delete</button>
+    <ul *ngIf="users$" class="user-list">
+      <li *ngFor="let user of users$ | async" class="user-card">
+        <div class="top-card">
+          <p>
+            <i
+              class="fa-solid fa-circle-user"
+              id="user-picto"
+              alt="User Picture"
+            ></i>
+            {{ user.userName }}
+          </p>
+          <div *ngIf="user.role !== 'Admin'">
+            <i
+              (click)="onDelete(user.id)"
+              class="fa-solid fa-trash-can btn"
+              alt="Delete User button"
+            ></i>
+          </div>
         </div>
+        <p>Id: {{ user.id }}</p>
+        <p>Email: {{ user.email }}</p>
       </li>
     </ul>
   </div>
