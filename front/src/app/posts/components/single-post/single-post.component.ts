@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first, Observable, take, tap } from 'rxjs';
+import { first, Observable, shareReplay, take, tap } from 'rxjs';
 import { Post } from '../../../@core/models/post.model';
 import { AuthService } from '../../../@core/services/auth.service';
 import { PostsService } from '../../../@core/services/posts.service';
@@ -14,31 +14,23 @@ import { PostsService } from '../../../@core/services/posts.service';
 export class SinglePostComponent {
 
   public readonly post$: Observable<Post>;
-  public currentUserId: string;
+  public currentUserId: number;
 
   public constructor(private readonly postService: PostsService,
     private readonly authService: AuthService,
     private route: ActivatedRoute, 
     private router: Router ) 
     {
-      this.currentUserId = (JSON.parse(atob(this.authService.getcurrentUser().token!.split('.')[1]))).userId; 
+      this.currentUserId = +(JSON.parse(atob(this.authService.getcurrentUser().token!.split('.')[1]))).userId; 
       this.post$ = this.postService.getPostById(+this.route.snapshot.params['id']).pipe(
-        tap((post: Post) => {
-          post.numberOfLikes = post.Likes.length;
-          if(post.Likes.find((likes : any) => likes.UserId === this.currentUserId )) {
-            post.isLiked = true;
-          } else {
-            post.isLiked = false;
-          };   
-        }), 
+        shareReplay()
       );
     }
   
   public onModify() {
       this.post$.pipe(
         take(1),
-        tap(post => this.router.navigate(['/edit-post', post.id]))
-      ).subscribe();
+      ).subscribe(post => this.router.navigate(['/edit-post', post.id]));
   }
 
   public onDelete() {

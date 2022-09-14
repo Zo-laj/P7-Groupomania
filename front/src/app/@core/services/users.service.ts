@@ -20,7 +20,7 @@ export class UserService {
     return this.http.get<User>(`http://localhost:3000/api/posts/${userId}`)
   }
 
-  public deleteUser(userId: string): Observable<User> {
+  public deleteUser(userId: number): Observable<User> {
     return this.http.delete<User>(`http://localhost:3000/api/admin/users/${userId}`)
   }
 }

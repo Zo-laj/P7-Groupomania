@@ -18,7 +18,7 @@ export class AdminComponent {
         this.users$ = this.userService.getAllUsers();
     };
 
-    public onDelete(userId:string) {
+    public onDelete(userId:number) {
         this.userService.deleteUser(userId).pipe(
           first(),
         ).subscribe((res:any) => 

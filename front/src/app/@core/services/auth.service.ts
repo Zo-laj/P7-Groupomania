@@ -39,7 +39,6 @@ export class AuthService {
     return this.currentUserSubject$.value;
   };
 
-  
 
   public createUser(email: string, userName: string, password: string): Observable<User> {
     return this.http.post<User>('http://localhost:3000/api/auth/signup', {email, userName, password});

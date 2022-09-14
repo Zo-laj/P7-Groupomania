@@ -1,13 +1,13 @@
 export class Post {
-  public id: string;
+  public id: number;
   public title: string;
   public description: string;
   public imageUrl: string;
-  public Likes: [];
-  public numberOfLikes: number;
+  public Likes: [{}];
   public isLiked: boolean; 
-  public createdAt: Date;
-  public UserId: string;
+  public createdAt: string;
+  public updatedAt: string;
+  public UserId: number;
   public User: {
     userName: string
   };

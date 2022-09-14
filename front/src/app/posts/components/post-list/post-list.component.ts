@@ -24,22 +24,12 @@ export class PostListComponent {
     this.posts$ = this.postService.getAllPosts().pipe(
       map((posts: Post[]) => 
         posts.sort( (a, b) => <any>new Date(b.createdAt) - <any>new Date(a.createdAt))
-      ),
-      tap((posts: Post[]) => {
-        posts.map((post: Post) => {
-          post.numberOfLikes = post.Likes.length;
-          if(post.Likes.find((like : any) => like.UserId === this.currentUserId )) {
-            post.isLiked = true;
-          } else {
-            post.isLiked = false;
-          };   
-        })
-      }), 
+      )
     )
-  }
+  };
 
-  public onViewPost(postId: string) {
-    this.router.navigate(['/posts', postId]);
-}
+  public onViewPost(postId: number) {
+    this.router.navigate([`/posts/${postId}`]);
+  };
 
 }

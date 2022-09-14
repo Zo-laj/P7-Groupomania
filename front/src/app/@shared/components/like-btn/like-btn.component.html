@@ -1,9 +1,15 @@
-<i
-  [ngClass]="{
-    'is-liked-btn': post.isLiked === true,
-    'is-not-liked-btn': post.isLiked === false
-  }"
-  (click)="onLike(+post.id)"
-  class="fa-solid fa-heart btn"
-  alt="Like button"
-></i>
+<div class="like-bar">
+  <i class="fa-regular fa-heart" id="show-likes" alt="Nombre de likes">
+    <span>
+      {{ numberOfLikes }}
+    </span>
+  </i>
+  <div>
+    <i
+      (click)="onLike(+post.id)"
+      class="fa-solid fa-heart btn"
+      alt="Like button"
+      [class.is-liked-btn]="isLiked$ | async"
+    ></i>
+  </div>
+</div>

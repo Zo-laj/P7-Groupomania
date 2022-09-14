@@ -30,7 +30,6 @@ export class SignupComponent {
     const password = this.signupForm.get('password')!.value;
     this.authService.createUser(email, userName, password).pipe(
       switchMap(() => this.authService.loginUser(email, password)),
-      tap(() => this.router.navigateByUrl('/posts'))
-      ).subscribe();
+      ).subscribe(() => this.router.navigateByUrl('/posts'));
   }
 }

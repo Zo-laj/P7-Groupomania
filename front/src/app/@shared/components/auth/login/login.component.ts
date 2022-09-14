@@ -28,12 +28,11 @@ export class LoginComponent{
     const email = this.loginForm.get('email')!.value;
     const password = this.loginForm.get('password')!.value;
     this.authService.loginUser(email, password).pipe(
-      tap(() => this.router.navigateByUrl('/posts')),
       catchError (error => {
         this.errorMsg = "Utilisateur ou mot de passe incorrect";
         return EMPTY;
       })
-      ).subscribe();
+      ).subscribe(() => this.router.navigateByUrl('/posts'));
   }
 
 }
