@@ -38,7 +38,7 @@ export class PostListComponent {
         first(),
       ).subscribe(() => {
         window.location.reload();
-    });
+      });
+    };
   };
-  }
 }

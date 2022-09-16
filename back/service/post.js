@@ -41,13 +41,13 @@ exports.updatePost = (post, file, protocol, host, id) => {
 exports.deletePost = async (id) => {
   const deletedPost = await Post.findOne({ where: { id } });
 
-  const filename = await deletedPost.imageUrl.split("/images/")[1];
+  const filename = deletedPost.imageUrl.split("/images/")[1];
 
   fs.unlink(`images/${filename}`, () => {
-    Post.destroy({ where: { id } });
+    Post.findOne({ where: { id } });
   });
 
-  return await Post.destroy({
+  return Post.destroy({
     where: { id },
   });
 };

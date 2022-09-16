@@ -16,7 +16,7 @@
       >
       </textarea>
     </div>
-    <div class="form-group">
+    <div class="img-section">
       <input
         class="file-input"
         type="file"
@@ -25,9 +25,7 @@
         #fileUpload
       />
       <button (click)="fileUpload.click()">Ajouter une image</button>
-      <div *ngIf="imagePreview && imagePreview !== ''">
-        <img src="imagePreview" alt="Image preview" />
-      </div>
+      <img *ngIf="imagePreview" [src]="imagePreview" alt="Image preview" />
     </div>
     <div class="submit-btn">
       <button
