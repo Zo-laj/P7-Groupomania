@@ -42,6 +42,6 @@ export class SinglePostComponent {
   }
 
   public onBack() {
-    this.router.navigate(['/posts']);
+    this.router.navigateByUrl('/posts');
   }
 }

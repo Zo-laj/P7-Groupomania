@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { map, Observable, tap } from 'rxjs';
+import { first, map, merge, MonoTypeOperatorFunction, Observable, shareReplay, Subject, switchMap, take, tap } from 'rxjs';
 import { AuthService } from 'src/app/@core/services/auth.service';
 import { Post } from '../../../@core/models/post.model';
 import { PostsService } from '../../../@core/services/posts.service';
@@ -24,7 +24,7 @@ export class PostListComponent {
     this.posts$ = this.postService.getAllPosts().pipe(
       map((posts: Post[]) => 
         posts.sort( (a, b) => <any>new Date(b.createdAt) - <any>new Date(a.createdAt))
-      )
+      ),
     )
   };
 
@@ -32,4 +32,13 @@ export class PostListComponent {
     this.router.navigate([`/posts/${postId}`]);
   };
 
+  public onAdminDeletePost(postId: number) {
+    if(confirm("Etes vous sûr de vouloir supprimer ce post ?")) {
+      this.postService.deletePost(postId).pipe(
+        first(),
+      ).subscribe(() => {
+        window.location.reload();
+    });
+  };
+  }
 }

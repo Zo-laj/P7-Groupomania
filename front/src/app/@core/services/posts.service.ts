@@ -1,27 +1,28 @@
 import { Injectable } from '@angular/core';
-import { Observable, shareReplay } from 'rxjs';
+import { merge, MonoTypeOperatorFunction, Observable, shareReplay, switchMap, take, } from 'rxjs';
 import { Post } from '../models/post.model';
 import { HttpClient } from '@angular/common/http';
 
-// export function refreshOn<T>(...triggers$: Observable<any>[]): MonoTypeOperatorFunction<T> {
-//   return (source$: Observable<T>) => {
-//     return merge(
-//       source$,
-//       ...triggers$.map((trigger$: Observable<any>) => trigger$.pipe(
-//         switchMap(() => source$.pipe(
-//           take(1)
-//         ))
-//       ))
-//     );
-//   }
-// };
+export function refreshOn<T>(...triggers$: Observable<any>[]): MonoTypeOperatorFunction<T> {
+  return (source$: Observable<T>) => {
+    return merge(
+      source$,
+      ...triggers$.map((trigger$: Observable<any>) => trigger$.pipe(
+        switchMap(() => source$.pipe(
+          take(1)
+        ))
+      ))
+    );
+  }
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
   
   public constructor(private http: HttpClient) {
-  }
+  };
 
   public getAllPosts(): Observable<Post[]> {
     return this.http.get<Post[]>('http://localhost:3000/api/posts').pipe(
@@ -32,7 +33,7 @@ export class PostsService {
       const formData = new FormData;
       formData.append('post', JSON.stringify(post));
       formData.append('image', image);
-      return this.http.post<Post>('http://localhost:3000/api/posts', formData)
+      return this.http.post<Post>('http://localhost:3000/api/posts', formData);
   };
 
   public getPostById(postId: number): Observable<Post> {
@@ -50,18 +51,13 @@ export class PostsService {
     const formData = new FormData;
     formData.append('post', JSON.stringify(post));
     formData.append('image', image);
-    return this.http.put<Post>(`http://localhost:3000/api/posts/${postId}`, formData)
+    return this.http.put<Post>(`http://localhost:3000/api/posts/${postId}`, formData);
   };
 
   public deletePost(postId: number): Observable<Post> {
-    return this.http.delete<Post>(`http://localhost:3000/api/posts/${postId}`)
+    return this.http.delete<Post>(`http://localhost:3000/api/posts/${postId}`);
   };
-
 }
-
 
 //ngx-toastr
 // nebular css
-
-
-

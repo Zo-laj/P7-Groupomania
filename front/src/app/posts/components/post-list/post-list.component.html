@@ -6,6 +6,12 @@
     <div class="post-container">
       <div class="post-card">
         <div class="top-bar">
+          <i
+            *isAdmin
+            (click)="onAdminDeletePost(post.id)"
+            class="fa-solid fa-trash-can btn"
+            alt="Delete Post button"
+          ></i>
           <div class="user">
             <i
               class="fa-solid fa-circle-user"

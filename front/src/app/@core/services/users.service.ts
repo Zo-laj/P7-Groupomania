@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
-import { AuthService } from './auth.service';
-import { Observable, shareReplay } from 'rxjs';
+import { Observable, shareReplay, } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {

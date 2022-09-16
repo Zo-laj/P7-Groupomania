@@ -22,9 +22,9 @@ export class AdminComponent {
         if(confirm("Etes vous sûr de vouloir supprimer cet utilisateur ?")) {
             this.userService.deleteUser(userId).pipe(
               first(),
-            ).subscribe((res:any) => {
+            ).subscribe(() => {
                 window.location.reload();
             });
-        };
+        }
     };
 }
