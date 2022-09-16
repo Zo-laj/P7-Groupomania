@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { first, map } from 'rxjs/operators';
+import { first, map, scan, switchMap } from 'rxjs/operators';
 import { User } from 'src/app/@core/models/user.model';
 import { UserService } from 'src/app/@core/services/users.service';
 
@@ -19,14 +19,12 @@ export class AdminComponent {
     };
 
     public onDelete(userId:number) {
-        this.userService.deleteUser(userId).pipe(
-          first(),
-        ).subscribe((res:any) => 
-            this.users$.pipe(
-                map( users => {
-                    return users.filter( user => user.id !== userId)
-                })
-            )
-        )
+        if(confirm("Etes vous sûr de vouloir supprimer cet utilisateur ?")) {
+            this.userService.deleteUser(userId).pipe(
+              first(),
+            ).subscribe((res:any) => {
+                window.location.reload();
+            });
+        };
     };
 }

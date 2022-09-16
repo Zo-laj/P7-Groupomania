@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first, Observable, shareReplay, take, tap } from 'rxjs';
+import { first, Observable, shareReplay, take } from 'rxjs';
 import { Post } from '../../../@core/models/post.model';
 import { AuthService } from '../../../@core/services/auth.service';
 import { PostsService } from '../../../@core/services/posts.service';
@@ -34,9 +34,11 @@ export class SinglePostComponent {
   }
 
   public onDelete() {
-    this.postService.deletePost(+this.route.snapshot.params['id']).pipe(
-      first()
-    ).subscribe(() => this.router.navigateByUrl('/posts'));
+    if(confirm("Etes vous sûr de supprimer ce post ?")) {
+      this.postService.deletePost(+this.route.snapshot.params['id']).pipe(
+        first()
+      ).subscribe(() => this.router.navigateByUrl('/posts'));
+    } 
   }
 
   public onBack() {

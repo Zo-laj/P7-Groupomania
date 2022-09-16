@@ -25,6 +25,9 @@
         #fileUpload
       />
       <button (click)="fileUpload.click()">Ajouter une image</button>
+      <div *ngIf="imagePreview && imagePreview !== ''">
+        <img src="imagePreview" alt="Image preview" />
+      </div>
     </div>
     <div class="submit-btn">
       <button

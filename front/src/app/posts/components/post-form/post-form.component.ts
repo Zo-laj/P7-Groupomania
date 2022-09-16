@@ -36,25 +36,29 @@ export class PostFormComponent {
               description: [null, Validators.required],
               imageUrl: [null, Validators.required],
       });
-
+      
       if (!this.isAddMode) {
-          this.postService.getPostById(+this.postId)
-              .pipe(first())
-              .subscribe(post => this.postForm.patchValue(post));
+        this.postService.getPostById(+this.postId)
+        .pipe(first())
+        .subscribe(post => { 
+          this.postForm.patchValue(post);
+          this.imagePreview = post.imageUrl});
       }
+      
   }
 
   onFileChange(event: Event) {
     const file : File = (event.target as HTMLInputElement).files![0];
     this.postForm.get('imageUrl')!.setValue(file);
     this.postForm.updateValueAndValidity();
-    
+
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result as string;
     };
     reader.readAsDataURL(file);
   }
+
 
   public onSubmitForm() {
     if (this.isAddMode) {

@@ -46,7 +46,7 @@ export class LikeBtnComponent {
         this.numberOfLikes--;
         this.isLiked$.next(false)
       });
-  } else {
+  } else if (this.isLiked$.getValue() === false) {
     this.postService.likePost(postId, this.currentUserId, 'like').pipe(
       catchError( error => {
         console.log(error);
