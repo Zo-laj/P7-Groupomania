@@ -19,7 +19,13 @@
         formControlName="password"
       />
     </div>
-    <button class="form-btn" color="primary-color" (click)="onLogin()">
+    <button
+      class="form-btn"
+      color="primary-color"
+      (click)="onLogin()"
+      [class.invalid-form]="loginForm.invalid"
+      [disabled]="loginForm.invalid"
+    >
       Se connecter
     </button>
     <small class="errorMsg">{{ errorMsg }}</small>

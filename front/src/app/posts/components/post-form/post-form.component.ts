@@ -18,6 +18,7 @@ export class PostFormComponent {
   public isAddMode: boolean;
   public imagePreview: string;
   public postId: string;
+  public errorMsg: string;
 
   public constructor(
     private formBuilder: FormBuilder, 

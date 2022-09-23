@@ -34,11 +34,6 @@ export class SignupComponent {
     const userName = this.signupForm.get('userName')!.value;
     const password = this.signupForm.get('password')!.value;
 
-    if (this.signupForm.invalid) {
-      this.errorMsg = "Veuillez remplir tous les champs"
-      return;
-    }
-
     this.authService.createUser(email, userName, password).pipe(
       catchError (error => {
         if(error.error.error.errors[0].message === "email must be unique") {

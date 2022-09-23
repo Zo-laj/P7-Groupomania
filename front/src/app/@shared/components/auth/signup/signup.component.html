@@ -66,7 +66,13 @@
         et faire au moins 5 caractères
       </small>
     </div>
-    <button class="form-btn" color="primary-color" (click)="onSignup()">
+    <button
+      class="form-btn"
+      color="primary-color"
+      (click)="onSignup()"
+      [class.invalid-form]="signupForm.invalid"
+      [disabled]="signupForm.invalid"
+    >
       Créer un compte
     </button>
     <small class="errorMsg">{{ errorMsg }}</small>
