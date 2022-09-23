@@ -8,7 +8,18 @@
         class="form-control input"
         id="email"
         formControlName="email"
+        [email]="true"
+        [class.is-invalid]="
+          signupForm.get('email')?.invalid && signupForm.get('email')?.touched
+        "
       />
+      <small
+        class="errorMsg"
+        *ngIf="
+          signupForm.get('email')?.invalid && signupForm.get('email')?.touched
+        "
+        >Veuillez entrer une adresse mail valide
+      </small>
     </div>
     <div class="form-element">
       <label for="userName">Nom d'utilisateur<span>*</span></label>
@@ -17,7 +28,20 @@
         class="form-control input"
         id="userName"
         formControlName="userName"
+        [class.is-invalid]="
+          signupForm.get('userName')?.invalid &&
+          signupForm.get('userName')?.touched
+        "
       />
+      <small
+        class="errorMsg"
+        *ngIf="
+          signupForm.get('userName')?.invalid &&
+          signupForm.get('userName')?.touched
+        "
+      >
+        Votre nom doit contenir au minimum 3 caractères
+      </small>
     </div>
     <div class="form-element">
       <label for="password">Mot de passe<span>*</span></label>
@@ -26,10 +50,25 @@
         class="form-control"
         id="password"
         formControlName="password"
+        [class.is-invalid]="
+          signupForm.get('password')?.invalid &&
+          signupForm.get('password')?.touched
+        "
       />
+      <small
+        class="errorMsg"
+        *ngIf="
+          signupForm.get('password')?.invalid &&
+          signupForm.get('password')?.touched
+        "
+      >
+        Le mot de passe doit contenir une majuscule, une minuscule, un chiffre
+        et faire au moins 5 caractères
+      </small>
     </div>
     <button class="form-btn" color="primary-color" (click)="onSignup()">
       Créer un compte
     </button>
+    <small class="errorMsg">{{ errorMsg }}</small>
   </form>
 </section>

@@ -7,7 +7,13 @@ exports.signup = (req, res) => {
       .then(() =>
         res.status(201).json({ message: "User successfully created !" })
       )
-      .catch((error) => res.status(400).json({ error }));
+      .catch((error) =>
+        res.status(400).json({
+          error,
+          errorMsg:
+            "Email ou nom d'utilisateur déjà utilisé pour un autre compte",
+        })
+      );
   } catch {
     res.status(500).json({ error });
   }
@@ -18,11 +24,8 @@ exports.login = (req, res) => {
     userService
       .login(req.body.email, req.body.password)
       .then((user) => {
-        if (!user.validUser) {
-          return res.status(401).json({ error: "User not found !" });
-        }
         if (!user.validPassword) {
-          return res.status(401).json({ error: "Password incorrect !" });
+          return res.status(401).json({ error: "Mot de passe incorrect !" });
         }
         res.status(200).json({
           token: userService.createJwt(user.validUser.id, user.validUser.role),

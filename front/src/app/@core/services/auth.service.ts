@@ -56,7 +56,7 @@ export class AuthService {
   };
 
   public logoutUser() {
-    localStorage.removeItem('currentUser');
+    sessionStorage.removeItem('currentUser');
     this.currentUserSubject$.next(null!);
   };
 }

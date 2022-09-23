@@ -29,7 +29,13 @@ export class LoginComponent{
     const password = this.loginForm.get('password')!.value;
     this.authService.loginUser(email, password).pipe(
       catchError (error => {
-        this.errorMsg = "Utilisateur ou mot de passe incorrect";
+        if (email === "" || email === null || password === "" || password === null) {
+          this.errorMsg = "Veuillez remplir tous les champs"
+        } else if( error.error.error === "Mot de passe incorrect !"){
+          this.errorMsg = error.error.error;
+        } else {
+          this.errorMsg = "Addresse mail incorrecte" 
+        }
         return EMPTY;
       })
       ).subscribe(() => this.router.navigateByUrl('/posts'));
