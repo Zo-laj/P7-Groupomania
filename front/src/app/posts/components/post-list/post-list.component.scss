@@ -1,8 +1,8 @@
 .post-list {
-  padding: 16px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 24px;
 }
 
 .post-container {
@@ -44,6 +44,9 @@ h2 {
 .top-bar {
   display: flex;
   justify-content: space-between;
+  & .admin {
+    padding-right: 8px;
+  }
 }
 
 .post-header {
@@ -93,4 +96,21 @@ h2 {
   & span {
     font-family: "Lato", sans-serif;
   }
+}
+
+.new-post {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & i {
+    padding: 24px;
+    font-size: 32px;
+    color: #4e5166;
+    cursor: pointer;
+  }
+}
+
+.no-post {
+  display: flex;
+  justify-content: center;
 }

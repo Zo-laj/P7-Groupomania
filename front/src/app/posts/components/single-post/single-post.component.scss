@@ -5,13 +5,14 @@
 }
 
 .post-card {
-  display: flex;
-  flex-direction: column;
-  margin: 32px 64px;
+  margin: 24px 64px;
   box-shadow: 3px 3px 5px 3px #4e516666;
   padding: 32px;
   border-radius: 8px;
-  width: 800px;
+  width: 480px;
+  & div {
+    width: 100%;
+  }
 }
 
 .top-bar {

@@ -1,38 +1,28 @@
 <nav class="nav-container">
   <div class="nav-bar">
-    <ul>
-      <li routerLinkActive="active">
-        <a routerLink="admin" *isAdmin>Admin</a>
-      </li>
-      <li routerLinkActive="active">
-        <i
-          routerLink="new-post"
-          class="fa-solid fa-circle-plus"
-          id="new-post-btn"
-          *isLoggedIn
-        ></i>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="posts" *isLoggedIn>Posts</a>
-      </li>
-    </ul>
     <div class="logo">
       <img
-        src="../../assets/images/icon-left-font-monochrome-white.svg"
+        routerLink="posts"
+        src="../../../../assets/images/icon-left-font.svg"
         alt="Logo Groupomania"
       />
     </div>
-    <ul>
+
+    <ul *isLoggedOut>
       <li routerLinkActive="active">
-        <a routerLink="auth/signup" *isLoggedOut>Inscription</a>
+        <a routerLink="auth/signup">Inscription</a>
       </li>
       <li routerLinkActive="active">
-        <a routerLink="auth/login" *isLoggedOut>Connexion</a>
+        <a routerLink="auth/login">Connexion</a>
       </li>
-      <li>
-        <a routerLink="auth/login" *isLoggedIn (click)="onLogout()">
-          Déconnexion
-        </a>
+    </ul>
+
+    <ul *isLoggedIn>
+      <li routerLinkActive="active" *isAdmin>
+        <a routerLink="admin">Admin</a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="auth/login" (click)="onLogout()">Déconnexion</a>
       </li>
     </ul>
   </div>

@@ -1,4 +1,12 @@
 <div class="posts-container" *ngIf="posts$ | async as posts">
+  <div class="new-post">
+    <i
+      routerLink="/new-post"
+      class="fa-solid fa-circle-plus"
+      *isLoggedIn
+      alt="Créer un post"
+    ></i>
+  </div>
   <div class="no-post" *ngIf="posts.length <= 0">
     <p>No post to display!</p>
   </div>
@@ -9,8 +17,14 @@
           <i
             *isAdmin
             (click)="onAdminDeletePost(post.id)"
-            class="fa-solid fa-trash-can btn"
+            class="fa-solid fa-trash-can btn admin"
             alt="Delete Post button"
+          ></i>
+          <i
+            *isAdmin
+            (click)="onAdminModifyPost(post.id)"
+            class="fa-solid fa-pen btn admin"
+            alt="Update post button"
           ></i>
           <div class="user">
             <i

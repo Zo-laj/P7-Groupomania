@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { first, map, merge, MonoTypeOperatorFunction, Observable, shareReplay, Subject, switchMap, take, tap } from 'rxjs';
+import { first, map, Observable, take, } from 'rxjs';
 import { AuthService } from 'src/app/@core/services/auth.service';
 import { Post } from '../../../@core/models/post.model';
 import { PostsService } from '../../../@core/services/posts.service';
@@ -41,4 +41,10 @@ export class PostListComponent {
       });
     };
   };
+
+  public onAdminModifyPost(postId: number) {
+    this.posts$.pipe(
+      take(1),
+    ).subscribe( () => this.router.navigate(['/edit-post', postId]));
+}
 }
