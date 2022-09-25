@@ -34,8 +34,12 @@
   }
 }
 
-.delete-update-btn > i {
-  padding-left: 24px;
+.delete-update-btn {
+  display: flex;
+  justify-content: flex-end;
+  & i {
+    padding-left: 24px;
+  }
 }
 
 .post-header {

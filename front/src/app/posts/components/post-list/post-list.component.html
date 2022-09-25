@@ -8,7 +8,7 @@
     ></i>
   </div>
   <div class="no-post" *ngIf="posts.length <= 0">
-    <p>No post to display!</p>
+    <p>Soyez le premier a créer un post!</p>
   </div>
   <div class="post-list" *ngFor="let post of posts$ | async">
     <div class="post-container">
