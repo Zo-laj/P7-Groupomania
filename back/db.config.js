@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 require("dotenv").config();
 
 const sequelize = new Sequelize(
-  "GroupomaniaDB",
+  `${process.env.DB_NAME}`,
   "root",
   `${process.env.DB_PASSWORD}`,
   {
