@@ -67,3 +67,16 @@ h1 {
   cursor: auto;
   background: grey;
 }
+
+@media (max-width: 580px) {
+  .form-container {
+    margin: 0;
+    width: 100%;
+    & form {
+      padding: 24px;
+      width: 100%;
+      border-radius: 0;
+      box-shadow: none;
+    }
+  }
+}

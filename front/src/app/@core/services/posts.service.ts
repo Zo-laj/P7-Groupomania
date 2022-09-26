@@ -1,20 +1,8 @@
 import { Injectable } from '@angular/core';
-import { merge, MonoTypeOperatorFunction, Observable, shareReplay, switchMap, take, } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 import { Post } from '../models/post.model';
 import { HttpClient } from '@angular/common/http';
 
-export function refreshOn<T>(...triggers$: Observable<any>[]): MonoTypeOperatorFunction<T> {
-  return (source$: Observable<T>) => {
-    return merge(
-      source$,
-      ...triggers$.map((trigger$: Observable<any>) => trigger$.pipe(
-        switchMap(() => source$.pipe(
-          take(1)
-        ))
-      ))
-    );
-  }
-};
 
 @Injectable({
   providedIn: 'root'
@@ -59,5 +47,4 @@ export class PostsService {
   };
 }
 
-//ngx-toastr
-// nebular css
+

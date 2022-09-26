@@ -90,3 +90,24 @@
     font-family: "Lato", sans-serif;
   }
 }
+
+@media (max-width: 580px) {
+  .post-container {
+    width: 100%;
+    margin: 0;
+  }
+
+  .post-card {
+    margin: 0;
+    padding: 30px;
+    box-shadow: 1px 1px 1px 1px #4e516666;
+  }
+
+  .btn {
+    font-size: 20px;
+  }
+
+  .post-header > p {
+    display: none;
+  }
+}

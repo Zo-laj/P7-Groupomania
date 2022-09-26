@@ -52,3 +52,24 @@ a {
     text-decoration: underline;
   }
 }
+
+@media (max-width: 580px) {
+  .nav-container {
+    padding: 0 8px 0 0;
+  }
+
+  a {
+    font-weight: 600;
+    font-size: 1rem;
+    align-self: flex-end;
+  }
+
+  li {
+    margin: 0 4px 0 8px;
+  }
+
+  img {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

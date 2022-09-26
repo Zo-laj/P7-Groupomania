@@ -23,7 +23,7 @@ export class SinglePostComponent {
     {
       this.currentUserId = +(JSON.parse(atob(this.authService.getcurrentUser().token!.split('.')[1]))).userId; 
       this.post$ = this.postService.getPostById(+this.route.snapshot.params['id']).pipe(
-        shareReplay()
+        shareReplay(1)
       );
     }
   

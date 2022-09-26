@@ -29,3 +29,16 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media (max-width: 580px) {
+  .header {
+    margin: 0 32px;
+  }
+
+  .user-list {
+    margin: 24px;
+  }
+  .user-card {
+    width: 100%;
+  }
+}
